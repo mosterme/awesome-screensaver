@@ -50,6 +50,7 @@ namespace awesomescr
         }
         private void move_Tick(object sender, System.EventArgs e)
         {
+            text.Text = randomText();
             text.Location = randomLocation();
             text.ForeColor = randomColor();
         }
@@ -84,9 +85,9 @@ namespace awesomescr
             this.text = new Label();
             this.text.AutoSize = true;
             this.text.Font = new Font("sans-serif", 100);
+            this.text.Text = randomText();
             this.text.ForeColor = randomColor();
             this.text.Location = randomLocation();
-            this.text.Text = ":-)";
             this.Controls.Add(this.text); 
             this.Load += new System.EventHandler(this.Screen_Load);
             this.KeyPress += new KeyPressEventHandler(this.Screen_KeyPress);
@@ -108,6 +109,18 @@ namespace awesomescr
             int x = random.Next(Math.Max(padding, Bounds.Width - text.Width - padding));
             int y = random.Next(Math.Max(padding, Bounds.Height - text.Height - padding));
             return new Point(x,y);
+        }
+        private string[] smileys = {
+            ":-)",";-)",":-(",";-(","(-:",
+            ":*)",":^)",":-D",":-O",":-P",
+            "8-)",":-|","B-)","?-(","%-)",
+            "=)",":)",";)","ಠ_ಠ","ʕ•́ᴥ•̀ʔ",
+            "o_O","≧◉ᴥ◉≦","¯\\_(ツ)_/¯",
+        };
+        private string randomText()
+        {
+            int index = random.Next(smileys.Length);
+            return smileys[index];
         }
     }
 }
