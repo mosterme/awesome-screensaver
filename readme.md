@@ -1,2 +1,7 @@
-# Awesome Screensaver 
-Awesome Screensaver - a small vacation project.
+# Awesome Screensaver
+
+## Description
+Awesome Screensaver - displays a random smiley on the screen.
+
+## Screenshot
+![smile](screenshot.png)
