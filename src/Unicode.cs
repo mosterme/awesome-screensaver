@@ -4,12 +4,12 @@ using System.Unicode;
 using System;
 namespace awesomescr
 {
-    public class Unicode
+    public class Unicode : Provider
     {
         private static Random random = new Random();
         public static String version = "Unicode v" + UnicodeInfo.UnicodeVersion.ToString(2);
         private static UnicodeBlock[] blocks = UnicodeInfo.GetBlocks();
-        public static string next() {
+        public string next() {
             int fallback = 0x1F499, current = random.Next(blocks.Length);
             while (fallback++ < 0x1F4A8)
             {
@@ -18,7 +18,7 @@ namespace awesomescr
             }
             return Char.ConvertFromUtf32(fallback);
         }
-        public static string info(string key) {
+        public string info(string key) {
             int i = Char.ConvertToUtf32(key,0);
             UnicodeCharInfo u = UnicodeInfo.GetCharInfo(i);
             return version + " : " + u.Block + " : " + u.Category + " : " + u.Name; // +  " : " + u.CodePoint.ToString("X4");

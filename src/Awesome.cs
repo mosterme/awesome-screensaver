@@ -3,15 +3,15 @@ using System.Linq;
 using System;
 namespace awesomescr
 {
-    public class Awesome
+    public class Awesome : Provider
     {
         private static Random random = new Random();
         public static string version = "Font Awesome v4.7";
-        public static string next() {
+        public string next() {
             int i = data.ElementAt(random.Next(data.Count)).Key;
             return Char.ConvertFromUtf32(i);
         }
-        public static string info(String key) {
+        public string info(string key) {
             int i = Char.ConvertToUtf32(key,0);
             return version + " : " + data[i];
         }

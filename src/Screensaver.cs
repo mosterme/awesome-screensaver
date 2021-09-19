@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
@@ -20,7 +21,9 @@ namespace awesomescr
         private Timer timer;
         private Point mouse;
         private int padding = 5;
-        private bool awesome = false, preview = false;
+        private bool awesome = true, smileys = true, unicode = true, preview = false;
+        private Provider provider = new Awesome();
+        private List<Provider> providers = new List<Provider>();
         private Label info, text;
         private Random random = new Random();
         public Screensaver(Rectangle Bounds)
@@ -55,6 +58,7 @@ namespace awesomescr
             text.Text = randomText();
             text.Location = randomLocation();
             text.ForeColor = randomColor();
+            this.provider = randomProvider();
         }
         private void Screen_MouseMove(object sender, MouseEventArgs e)
         {
@@ -80,6 +84,9 @@ namespace awesomescr
         }
         private void InitializeComponent()
         {
+            if (awesome) providers.Add(new Awesome());
+            if (smileys) providers.Add(new Smileys());
+            if (unicode) providers.Add(new Unicode());
             this.components = new System.ComponentModel.Container();
             this.AutoScaleDimensions = new SizeF(6F, 13F);
             this.BackColor = Color.Black;
@@ -119,10 +126,14 @@ namespace awesomescr
             int y = random.Next(Math.Max(padding, Bounds.Height - text.Height - padding));
             return new Point(x,y);
         }
+        private Provider randomProvider()
+        {
+            return providers[random.Next(providers.Count)];
+        }
         private string randomText()
         {
-            String result  = Unicode.next();
-            this.info.Text = Unicode.info(result);
+            String result  = provider.next();
+            this.info.Text = provider.info(result);
             return result;
         }
     }
