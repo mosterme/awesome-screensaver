@@ -6,7 +6,7 @@ namespace awesomescr
     class Smileys
     {
         private static Random random = new Random();
-        public static string version = "Smileys v1";
+        public static string version = "Smileys v1.1";
         public static string next() {
             return data.ElementAt(random.Next(data.Count)).Key;
         }
@@ -14,32 +14,30 @@ namespace awesomescr
             return version + " : " + data[key];
         }
         private static Dictionary<string, string> data = new Dictionary<string, string>() {
-            {":-)","Smiling happy face - don't take me too seriously."},
-            {";-)","Winking happy face - something said tongue-in-cheek."},
-            {":-(","Sad or disappointed face."},
-            {";-(","Crying sad face."},
+            {":-)","classic : smiling happy face / don't take me too seriously"},
+            {";-)","classic : winking happy face / something said tongue-in-cheek"},
+            {":-(","classic : sad or disappointed face"},
+            {";-(","classic : crying sad face"},
 
-            {"8-)","Smiling face with a wide-eyed look."},
-            {"B-)","Smiling face with horn-rimmed glasses."},
-            {"%-)","Confused smiling happy face."},
-            {"?-(","Sad face with a black eye."},
+            {"8-)","classic : smiling face with a wide-eyed look"},
+            {"B-)","classic : smiling face with horn-rimmed glasses"},
+            {"%-)","classic : sonfused smiling happy face"},
+            {"?-(","classic : sad face with a black eye"},
 
-            {":^)","Smiling happy face with pointy nose."},
-            {":*)","Drunk smiling face. Clowning around."},
-            //{":-)",""},
-            //{":-)",""},
+            {":^)","classic : smiling happy face with pointy nose"},
+            {":*)","classic : drunk smiling face / clowning around"},
 
-            {":-D","Wider happy face (or Mistrel singers)"},
-            {":-O","Shouting or talkaktive face. Uh oh."},
-            {":-P","Tongue stuck out."},
-            {":-|","Face with no expression - 'that comment doesn't phase me'"},
+            {":-D","classic : wider happy face / Mistrel singers"},
+            {":-O","classic : shouting or talkaktive face / Uh oh!"},
+            {":-P","classic : tongue stuck out"},
+            {":-|","classic : stone face / no expression"},
  
-            {":)","Mini smiling face or Cheshire cat."},
-            {";)","Mini winking face."},
-            {"=)",""},
-            {":(","Mini frowning face."},
-            {";(","Mini crying face."},
-            {"=(",""},
+            {":)","mini : smiling face / Cheshire cat"},
+            {";)","mini : winking face"},
+            {"=)","mini : big smile"},
+            {":(","mini : frowning face"},
+            {";(","mini : crying face"},
+            {"=(","mini : big frown"},
  
             {"o_O",""},
             {"ಠ_ಠ",""},
