@@ -21,7 +21,7 @@ namespace awesomescr
 
             {"8-)","classic : smiling face with a wide-eyed look"},
             {"B-)","classic : smiling face with horn-rimmed glasses"},
-            {"%-)","classic : sonfused smiling happy face"},
+            {"%-)","classic : confused smiling happy face"},
             {"?-(","classic : sad face with a black eye"},
 
             {":^)","classic : smiling happy face with pointy nose"},
