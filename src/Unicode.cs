@@ -7,6 +7,7 @@ namespace awesomescr
     public class Unicode
     {
         private static Random random = new Random();
+        public static String version = "Unicode v" + UnicodeInfo.UnicodeVersion.ToString(2);
         private static UnicodeBlock[] blocks = UnicodeInfo.GetBlocks();
         public static string next() {
             int fallback = 0x1F499, current = random.Next(blocks.Length);
@@ -20,7 +21,7 @@ namespace awesomescr
         public static string info(string key) {
             int i = Char.ConvertToUtf32(key,0);
             UnicodeCharInfo u = UnicodeInfo.GetCharInfo(i);
-            return u.Block + " : " + u.Category + " : " + u.Name; // +  " : " + u.CodePoint.ToString("X4");
+            return version + " : " + u.Block + " : " + u.Category + " : " + u.Name; // +  " : " + u.CodePoint.ToString("X4");
         }
         private static HashSet<UnicodeCategory> categories = new HashSet<UnicodeCategory>() {
             //UnicodeCategory.Control,
