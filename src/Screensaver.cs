@@ -20,7 +20,7 @@ namespace awesomescr
         private Timer timer;
         private Point mouse;
         private int padding = 5;
-        private bool preview = false;
+        private bool awesome = false, preview = false;
         private Label info, text;
         private Random random = new Random();
         public Screensaver(Rectangle Bounds)
@@ -90,7 +90,7 @@ namespace awesomescr
             this.info.BringToFront();
             this.text = new Label();
             this.text.AutoSize = true;
-            this.text.Font = new Font("sans-serif", 100);
+            this.text.Font = new Font("FontAwesome", 200);
             this.text.Text = randomText();
             this.text.ForeColor = randomColor();
             this.text.Location = randomLocation();
@@ -119,9 +119,19 @@ namespace awesomescr
         }
         private string randomText()
         {
-            String result  = Smileys.next();
-            this.info.Text = Smileys.info(result);
-            return result;
+            awesome = !awesome;
+            if (awesome)
+            {
+                String result  = Awesome.next();
+                this.info.Text = Awesome.info(result);
+                return result;
+            }
+            else
+            {
+                String result  = Smileys.next();
+                this.info.Text = Smileys.info(result);
+                return result;
+            }
         }
     }
 }
