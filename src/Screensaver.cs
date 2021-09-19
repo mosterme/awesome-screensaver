@@ -30,9 +30,11 @@ namespace awesomescr
         }
         public Screensaver(IntPtr PreviewWndHandle)
         {
-            preview = true; InitializeComponent();
-            // Make the text label font size smaller
-            text.Font = new Font(text.Font.FontFamily, 30);
+            padding = 1; preview = true; this.Bounds = new Rectangle(0,0,150,100);
+            InitializeComponent();
+            // Make the info and text label font size smaller
+            info.Font = new Font(info.Font.FontFamily, info.Font.Size / 2);
+            text.Font = new Font(text.Font.FontFamily, text.Font.Size / 10);
             // Set the preview window as the parent of this window
             SetParent(this.Handle, PreviewWndHandle);
             // Make this a child window so it will close when the parent dialog closes
