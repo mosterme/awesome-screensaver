@@ -9,6 +9,10 @@
     <Version>0.0.0.1</Version>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="UnicodeInformation" Version="2.5.1" />
+  </ItemGroup>
+
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <Copy SourceFiles="$(TargetDir)awesomescr.exe" DestinationFiles="$(TargetDir)Awesome Screensaver.scr" SkipUnchangedFiles="true" />
     <Message Text="awesomescr -> $(TargetDir)Awesome Screensaver.scr" importance="high"/>

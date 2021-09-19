@@ -121,19 +121,9 @@ namespace awesomescr
         }
         private string randomText()
         {
-            awesome = !awesome;
-            if (awesome)
-            {
-                String result  = Awesome.next();
-                this.info.Text = Awesome.info(result);
-                return result;
-            }
-            else
-            {
-                String result  = Smileys.next();
-                this.info.Text = Smileys.info(result);
-                return result;
-            }
+            String result  = Unicode.next();
+            this.info.Text = Unicode.info(result);
+            return result;
         }
     }
 }
