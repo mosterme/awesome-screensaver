@@ -19,9 +19,9 @@ namespace awesomescr
         private System.ComponentModel.IContainer components = null;
         private Timer timer;
         private Point mouse;
-        private int padding = 3;
-        private bool preview = false;
-        private Label text;
+        private int padding = 5;
+        private bool awesome = false, preview = false;
+        private Label info, text;
         private Random random = new Random();
         public Screensaver(Rectangle Bounds)
         {
@@ -30,9 +30,11 @@ namespace awesomescr
         }
         public Screensaver(IntPtr PreviewWndHandle)
         {
-            preview = true; InitializeComponent();
-            // Make the text label font size smaller
-            text.Font = new Font(text.Font.FontFamily, 30);
+            padding = 1; preview = true; this.Bounds = new Rectangle(0,0,150,100);
+            InitializeComponent();
+            // Make the info and text label font size smaller
+            info.Font = new Font(info.Font.FontFamily, info.Font.Size / 2);
+            text.Font = new Font(text.Font.FontFamily, text.Font.Size / 10);
             // Set the preview window as the parent of this window
             SetParent(this.Handle, PreviewWndHandle);
             // Make this a child window so it will close when the parent dialog closes
@@ -82,13 +84,20 @@ namespace awesomescr
             this.AutoScaleDimensions = new SizeF(6F, 13F);
             this.BackColor = Color.Black;
             this.FormBorderStyle = FormBorderStyle.None;
+            this.info = new Label();
+            this.info.AutoSize = true;
+            this.info.BackColor = Color.Transparent;
+            this.info.ForeColor = Color.Gainsboro;
+            this.info.Location = new Point(padding, padding);
+            this.info.BringToFront();
             this.text = new Label();
             this.text.AutoSize = true;
-            this.text.Font = new Font("sans-serif", 100);
+            this.text.Font = new Font("FontAwesome", 200);
             this.text.Text = randomText();
             this.text.ForeColor = randomColor();
             this.text.Location = randomLocation();
-            this.Controls.Add(this.text); 
+            this.Controls.Add(this.info);
+            this.Controls.Add(this.text);
             this.Load += new System.EventHandler(this.Screen_Load);
             this.KeyPress += new KeyPressEventHandler(this.Screen_KeyPress);
             this.MouseClick += new MouseEventHandler(this.Screen_MouseClick);
@@ -110,17 +119,21 @@ namespace awesomescr
             int y = random.Next(Math.Max(padding, Bounds.Height - text.Height - padding));
             return new Point(x,y);
         }
-        private string[] smileys = {
-            ":-)",";-)",":-(",";-(","(-:",
-            ":*)",":^)",":-D",":-O",":-P",
-            "8-)",":-|","B-)","?-(","%-)",
-            "=)",":)",";)","ಠ_ಠ","ʕ•́ᴥ•̀ʔ",
-            "o_O","≧◉ᴥ◉≦","¯\\_(ツ)_/¯",
-        };
         private string randomText()
         {
-            int index = random.Next(smileys.Length);
-            return smileys[index];
+            awesome = !awesome;
+            if (awesome)
+            {
+                String result  = Awesome.next();
+                this.info.Text = Awesome.info(result);
+                return result;
+            }
+            else
+            {
+                String result  = Smileys.next();
+                this.info.Text = Smileys.info(result);
+                return result;
+            }
         }
     }
 }
