@@ -6,8 +6,12 @@ namespace awesomescr
     class Smileys
     {
         private static Random random = new Random();
-        public static string randomSmiley() {
+        public static string version = "Smileys v1";
+        public static string next() {
             return data.ElementAt(random.Next(data.Count)).Key;
+        }
+        public static string info(string key) {
+            return version + " : " + data[key];
         }
         private static Dictionary<string, string> data = new Dictionary<string, string>() {
             {":-)","Smiling happy face - don't take me too seriously."},

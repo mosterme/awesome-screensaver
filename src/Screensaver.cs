@@ -19,9 +19,9 @@ namespace awesomescr
         private System.ComponentModel.IContainer components = null;
         private Timer timer;
         private Point mouse;
-        private int padding = 3;
+        private int padding = 5;
         private bool preview = false;
-        private Label text;
+        private Label info, text;
         private Random random = new Random();
         public Screensaver(Rectangle Bounds)
         {
@@ -82,13 +82,20 @@ namespace awesomescr
             this.AutoScaleDimensions = new SizeF(6F, 13F);
             this.BackColor = Color.Black;
             this.FormBorderStyle = FormBorderStyle.None;
+            this.info = new Label();
+            this.info.AutoSize = true;
+            this.info.BackColor = Color.Transparent;
+            this.info.ForeColor = Color.Gainsboro;
+            this.info.Location = new Point(padding, padding);
+            this.info.BringToFront();
             this.text = new Label();
             this.text.AutoSize = true;
             this.text.Font = new Font("sans-serif", 100);
             this.text.Text = randomText();
             this.text.ForeColor = randomColor();
             this.text.Location = randomLocation();
-            this.Controls.Add(this.text); 
+            this.Controls.Add(this.info);
+            this.Controls.Add(this.text);
             this.Load += new System.EventHandler(this.Screen_Load);
             this.KeyPress += new KeyPressEventHandler(this.Screen_KeyPress);
             this.MouseClick += new MouseEventHandler(this.Screen_MouseClick);
@@ -112,7 +119,9 @@ namespace awesomescr
         }
         private string randomText()
         {
-            return Smileys.randomSmiley();
+            String result  = Smileys.next();
+            this.info.Text = Smileys.info(result);
+            return result;
         }
     }
 }
