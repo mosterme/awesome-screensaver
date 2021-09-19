@@ -110,17 +110,9 @@ namespace awesomescr
             int y = random.Next(Math.Max(padding, Bounds.Height - text.Height - padding));
             return new Point(x,y);
         }
-        private string[] smileys = {
-            ":-)",";-)",":-(",";-(","(-:",
-            ":*)",":^)",":-D",":-O",":-P",
-            "8-)",":-|","B-)","?-(","%-)",
-            "=)",":)",";)","ಠ_ಠ","ʕ•́ᴥ•̀ʔ",
-            "o_O","≧◉ᴥ◉≦","¯\\_(ツ)_/¯",
-        };
         private string randomText()
         {
-            int index = random.Next(smileys.Length);
-            return smileys[index];
+            return Smileys.randomSmiley();
         }
     }
 }
