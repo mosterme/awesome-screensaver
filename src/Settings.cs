@@ -4,11 +4,14 @@ namespace awesomescr
 {
     public class Settings : Form
     {
-        public static bool font_awesome_47 = true;
-        public static bool smileys_classic = true;
-        public static bool smileys_kaomoji = true;
+        public static bool font_awesome_47 = false;
+        public static bool smileys_classic = false;
+        public static bool smileys_kaomoji = false;
         public static bool smileys_mini = false;
-        public static bool unicode = false;
+        public static bool unicode_egypt = true;
+        public static bool unicode_emoji = false;
+        public static bool unicode_other = false;
+        public static bool unicode_maths = false;
         private static int margin = 10;
         public Settings()
         {
@@ -51,22 +54,22 @@ namespace awesomescr
             label4.Location = new Point(margin, 100);
             field4.Location = new Point(label4.Location.X + label4.Bounds.Right + Padding.Right, label4.Location.Y);
             field4.Checked = smileys_mini;
-            label5.Text = "Unicode (Asian)";
+            label5.Text = "Egyptian Hieroglyphs";
             label5.Location = new Point(margin, 130);
             field5.Location = new Point(label5.Location.X + label5.Bounds.Right + Padding.Right, label5.Location.Y);
-            field5.Checked = smileys_mini;
-            label6.Text = "Unicode (Emoticons)";
+            field5.Checked = unicode_egypt;
+            label6.Text = "Emoji + Pictographs";
             label6.Location = new Point(margin, 160);
             field6.Location = new Point(label6.Location.X + label6.Bounds.Right + Padding.Right, label6.Location.Y);
-            field6.Checked = smileys_mini;
-            label7.Text = "Unicode (Hieroglyphs)";
+            field6.Checked = unicode_emoji;
+            label7.Text = "Mathematical Symbols";
             label7.Location = new Point(margin, 190);
             field7.Location = new Point(label7.Location.X + label7.Bounds.Right + Padding.Right, label7.Location.Y);
-            field7.Checked = smileys_mini;
-            label8.Text = "Unicode (Symbols)";
+            field7.Checked = unicode_maths;
+            label8.Text = "Other Symbols";
             label8.Location = new Point(margin, 220);
             field8.Location = new Point(label8.Location.X + label8.Bounds.Right + Padding.Right, label8.Location.Y);
-            field8.Checked = smileys_mini;
+            field8.Checked = unicode_other;
             button1.Text = "OK";
             button1.Location = new Point(110, 280);
             button2.Text = "Cancel";

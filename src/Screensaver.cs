@@ -88,7 +88,10 @@ namespace awesomescr
             if (Settings.smileys_classic) providers.Add(new Smileys(Smileys.classic));
             if (Settings.smileys_kaomoji) providers.Add(new Smileys(Smileys.kaomoji));
             if (Settings.smileys_mini) providers.Add(new Smileys(Smileys.mini));
-            if (Settings.unicode) providers.Add(new Unicode());
+            if (Settings.unicode_egypt) providers.Add(new Unicode(Unicode.egyptian_hieroglyphs));
+            if (Settings.unicode_emoji) providers.Add(new Unicode(Unicode.emoji_pictographs));
+            if (Settings.unicode_maths) providers.Add(new Unicode(Unicode.mathematical_symbols));
+            if (Settings.unicode_other) providers.Add(new Unicode(Unicode.other_symbols));
             this.provider = randomProvider();
             this.components = new System.ComponentModel.Container();
             this.AutoScaleDimensions = new SizeF(6F, 13F);
