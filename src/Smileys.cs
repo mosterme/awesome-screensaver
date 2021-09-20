@@ -5,15 +5,22 @@ namespace awesomescr
 {
     class Smileys : Provider
     {
+        public static string version = "Smileys v1.3";
         private static Random random = new Random();
-        public static string version = "Smileys v1.2";
-        public string next() {
+        private Dictionary<string, string> data;
+        public Smileys(Dictionary<string, string> preset)
+        {
+            this.data = new Dictionary<string, string>(preset);
+        }
+        public string next()
+        {
             return data.ElementAt(random.Next(data.Count)).Key;
         }
-        public string info(string key) {
+        public string info(string key)
+        {
             return version + " : " + data[key];
         }
-        private static Dictionary<string, string> data = new Dictionary<string, string>() {
+        public static Dictionary<string, string> classic = new Dictionary<string, string>() {
             {":-)","classic : smiling happy face / don't take me too seriously"},
             {";-)","classic : winking happy face / something said tongue-in-cheek"},
             {":-(","classic : sad or disappointed face"},
@@ -28,8 +35,10 @@ namespace awesomescr
             {":-O","classic : shouting or talkaktive face / Uh oh!"},
             {":-P","classic : tongue stuck out"},
             {":-|","classic : stone face / no expression"},
- 
-            {":)","mini : smiling face / Cheshire cat"},
+            {":)" ,"classic : Cheshire cat"},
+        };
+        public static Dictionary<string, string> mini = new Dictionary<string, string>() {
+            {":)","mini : smiling face"},
             {":(","mini : frowning face"},
             {":|","mini : neutral face"},
             {":/","mini : disappointment"},
@@ -42,9 +51,10 @@ namespace awesomescr
             {"=(","mini : big frown"},
             {"<3","mini : heart"},
             {"</3","mini : broken heart"},
- 
-            {"^^", "kaomoji : "}, 
-            {"^_^","kaomoji : "}, 
+        };
+        public static Dictionary<string, string> kaomoji = new Dictionary<string, string>() {
+            {"^^", "kaomoji : "},
+            {"^_^","kaomoji : "},
             {"-_-","kaomoji : "},
             {"o_O","kaomoji : "},
             {"T_T","kaomoji : crying / sadness"},

@@ -1,29 +1,77 @@
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Unicode;
 using System;
 namespace awesomescr
 {
     public class Unicode : Provider
     {
-        private static Random random = new Random();
         public static String version = "Unicode v" + UnicodeInfo.UnicodeVersion.ToString(2);
-        private static UnicodeBlock[] blocks = UnicodeInfo.GetBlocks();
-        public string next() {
-            int fallback = 0x1F499, current = random.Next(blocks.Length);
+        private static Random random = new Random();
+        public Dictionary<string, UnicodeBlock> blocks = new Dictionary<string, UnicodeBlock>();
+        public Unicode(HashSet<string> preset)
+        {
+            foreach (UnicodeBlock ub in UnicodeInfo.GetBlocks())
+            {
+                if (preset.Contains(ub.Name)) blocks.Add(ub.Name, ub);
+            }
+        }
+        public string next()
+        {
+            int fallback = 0x1F499; UnicodeBlock current = blocks.ElementAt(random.Next(blocks.Count)).Value;
             while (fallback++ < 0x1F4A8)
             {
-                int result = random.Next(blocks[current].CodePointRange.FirstCodePoint, blocks[current].CodePointRange.LastCodePoint + 1);
+                int result = random.Next(current.CodePointRange.FirstCodePoint, current.CodePointRange.LastCodePoint + 1);
                 if (categories.Contains(UnicodeInfo.GetCharInfo(result).Category)) return Char.ConvertFromUtf32(result);
             }
             return Char.ConvertFromUtf32(fallback);
         }
-        public string info(string key) {
-            int i = Char.ConvertToUtf32(key,0);
+        public string info(string key)
+        {
+            int i = Char.ConvertToUtf32(key, 0);
             UnicodeCharInfo u = UnicodeInfo.GetCharInfo(i);
             return version + " : " + u.Block + " : " + u.Category + " : " + u.Name; // +  " : " + u.CodePoint.ToString("X4");
         }
-        private static HashSet<UnicodeCategory> categories = new HashSet<UnicodeCategory>() {
+        public static HashSet<string> egyptian_hieroglyphs = new HashSet<string>(){
+            "Egyptian Hieroglyphs",
+        };
+        public static HashSet<string> emoji_pictographs = new HashSet<string>(){
+            "Dingbats",
+            "Emoticons",
+            "Miscellaneous Symbols",
+            "Miscellaneous Symbols and Pictographs",
+            "Supplemental Symbols and Pictographs",
+            //"Symbols and Pictographs Extended-A",
+            "Transport and Map Symbols",
+        };
+        public static HashSet<string> mathematical_symbols = new HashSet<string>(){
+            "Arrows",
+            "Supplemental Arrows-A",
+            "Supplemental Arrows-B",
+            "Supplemental Arrows-C",
+            "Miscellaneous Symbols and Arrows",
+            "Letterlike Symbols",
+            "Mathematical Alphanumeric Symbols",
+            "Mathematical Operators",
+            "Supplemental Mathematical Operators",
+            "Miscellaneous Mathematical Symbols-A",
+            "Miscellaneous Mathematical Symbols-B",
+            "Block Elements",
+            "Box Drawing",
+            "Geometric Shapes",
+            "Geometric Shapes Extended",
+        };
+        public static HashSet<string> other_symbols = new HashSet<string>(){
+            "Alchemical Symbols",
+            "Currency Symbols",
+            "Domino Tiles",
+            "Mahjong Tiles",
+            "Playing Cards",
+            "Miscellaneous Symbols and Arrows",
+            "Yijing Hexagram Symbols",
+        };
+        private static HashSet<UnicodeCategory> categories = new HashSet<UnicodeCategory>(){
             //UnicodeCategory.Control,
             //UnicodeCategory.LineSeparator,
             //UnicodeCategory.ModifierSymbol,
