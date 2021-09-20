@@ -89,7 +89,7 @@ namespace awesomescr
             if (settings.smileys_classic.Checked) providers.Add(new Smileys(Smileys.classic));
             if (settings.smileys_kaomoji.Checked) providers.Add(new Smileys(Smileys.kaomoji));
             if (settings.smileys_mini.Checked) providers.Add(new Smileys(Smileys.mini));
-            if (settings.unicode_egypt.Checked) providers.Add(new Unicode(Unicode.egyptian_hieroglyphs));
+            if (settings.unicode_egypt.Checked) providers.Add(new Unicode(Unicode.african_scripts));
             if (settings.unicode_emoji.Checked) providers.Add(new Unicode(Unicode.emoji_pictographs));
             if (settings.unicode_maths.Checked) providers.Add(new Unicode(Unicode.mathematical_symbols));
             if (settings.unicode_other.Checked) providers.Add(new Unicode(Unicode.other_symbols));
