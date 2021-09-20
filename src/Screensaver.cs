@@ -84,14 +84,15 @@ namespace awesomescr
         }
         private void InitializeComponent()
         {
-            if (Settings.font_awesome_47) providers.Add(new Awesome());
-            if (Settings.smileys_classic) providers.Add(new Smileys(Smileys.classic));
-            if (Settings.smileys_kaomoji) providers.Add(new Smileys(Smileys.kaomoji));
-            if (Settings.smileys_mini) providers.Add(new Smileys(Smileys.mini));
-            if (Settings.unicode_egypt) providers.Add(new Unicode(Unicode.egyptian_hieroglyphs));
-            if (Settings.unicode_emoji) providers.Add(new Unicode(Unicode.emoji_pictographs));
-            if (Settings.unicode_maths) providers.Add(new Unicode(Unicode.mathematical_symbols));
-            if (Settings.unicode_other) providers.Add(new Unicode(Unicode.other_symbols));
+            Settings settings = new Settings(false);
+            if (settings.font_awesome_47.Checked) providers.Add(new Awesome());
+            if (settings.smileys_classic.Checked) providers.Add(new Smileys(Smileys.classic));
+            if (settings.smileys_kaomoji.Checked) providers.Add(new Smileys(Smileys.kaomoji));
+            if (settings.smileys_mini.Checked) providers.Add(new Smileys(Smileys.mini));
+            if (settings.unicode_egypt.Checked) providers.Add(new Unicode(Unicode.egyptian_hieroglyphs));
+            if (settings.unicode_emoji.Checked) providers.Add(new Unicode(Unicode.emoji_pictographs));
+            if (settings.unicode_maths.Checked) providers.Add(new Unicode(Unicode.mathematical_symbols));
+            if (settings.unicode_other.Checked) providers.Add(new Unicode(Unicode.other_symbols));
             this.provider = randomProvider();
             this.components = new System.ComponentModel.Container();
             this.AutoScaleDimensions = new SizeF(6F, 13F);
