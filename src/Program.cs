@@ -26,7 +26,9 @@ namespace awesomescr
                 else if (args[0].ToLower().Trim().Substring(0, 2) == "/c") //configure
                 {
                     //configure the screen saver
-                    // TODO
+                    //configure the screen saver
+                    Settings settings = new Settings();
+                    Application.Run(settings);
                 }
             }
             else
