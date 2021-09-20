@@ -21,8 +21,8 @@ namespace awesomescr
         private Timer timer;
         private Point mouse;
         private int padding = 5;
-        private bool awesome = true, smileys = true, unicode = true, preview = false;
-        private Provider provider = new Awesome();
+        private bool preview = false;
+        private Provider provider;
         private List<Provider> providers = new List<Provider>();
         private Label info, text;
         private Random random = new Random();
@@ -84,9 +84,12 @@ namespace awesomescr
         }
         private void InitializeComponent()
         {
-            if (awesome) providers.Add(new Awesome());
-            if (smileys) providers.Add(new Smileys());
-            if (unicode) providers.Add(new Unicode());
+            if (Settings.font_awesome_47) providers.Add(new Awesome());
+            if (Settings.smileys_classic) providers.Add(new Smileys(Smileys.classic));
+            if (Settings.smileys_kaomoji) providers.Add(new Smileys(Smileys.kaomoji));
+            if (Settings.smileys_mini) providers.Add(new Smileys(Smileys.mini));
+            if (Settings.unicode) providers.Add(new Unicode());
+            this.provider = randomProvider();
             this.components = new System.ComponentModel.Container();
             this.AutoScaleDimensions = new SizeF(6F, 13F);
             this.BackColor = Color.Black;
@@ -111,7 +114,7 @@ namespace awesomescr
             this.MouseMove += new MouseEventHandler(this.Screen_MouseMove);
             this.timer = new Timer(this.components);
         }
-       private Color randomColor()
+        private Color randomColor()
         {
             int m = 255, r = random.Next(m), g = random.Next(m), b = random.Next(m);
             Color c = Color.Gray;
