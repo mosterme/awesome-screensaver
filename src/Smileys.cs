@@ -5,7 +5,7 @@ namespace awesomescr
 {
     class Smileys : Provider
     {
-        public static string version = "Smileys v1.3";
+        public static string version = "Smileys v1.4";
         private static Random random = new Random();
         private Dictionary<string, string> data;
         public Smileys(Dictionary<string, string> preset)
@@ -23,19 +23,38 @@ namespace awesomescr
         public static Dictionary<string, string> classic = new Dictionary<string, string>() {
             {":-)","classic : smiling happy face / don't take me too seriously"},
             {";-)","classic : winking happy face / something said tongue-in-cheek"},
-            {":-(","classic : sad or disappointed face"},
-            {";-(","classic : crying sad face"},
+            {":-(","classic : disappointed / sad"},
+            {";-(","classic : crying / sad"},
             {"8-)","classic : smiling face with a wide-eyed look"},
             {"B-)","classic : smiling face with horn-rimmed glasses"},
-            {"%-)","classic : confused smiling happy face"},
+            {"%-)","classic : confused but happy"},
             {"?-(","classic : sad face with a black eye"},
-            {":^)","classic : smiling happy face with pointy nose"},
-            {":*)","classic : drunk smiling face / clowning around"},
+            {":^)","classic : pointy nose"},
+            {":*)","classic : clown / drunk"},
             {":-D","classic : wide happy face / Mistrel singers"},
-            {":-O","classic : shouting or talkaktive face / Uh oh!"},
+            {":-O","classic : Oh, nooooooo! / Uh oh!"},
             {":-P","classic : tongue stuck out"},
-            {":-|","classic : stone face / no expression"},
-            {":)" ,"classic : Cheshire cat"},
+            {":-|","classic : disgusted / no expression"},
+            {":) ","classic : Cheshire cat"},
+            {"7:^]","classic : Ronald Reagan"},
+            {"*<|:-)","classic : Santa Claus (Ho Ho Ho)"},
+            {"d:-)","classic : baseball cap"},
+            {"q:-)","classic : baseball cap backwards"},
+            {"(-:","classic : Australian / left-handed"},
+            {"+:-)","classic : priest"},
+            {"=:-)","classic : punk rocker"},
+            {"%-^","classic : Picasso"},
+            {":-\"","classic : whistling"},
+            {":-v","classic : speaking"},
+            {":-V","classic : shouting"},
+            {"(_8(I)","classic : Homer Simpson"},
+            {"<°(((><x","classic : fish"},
+            {"|-)","classic : Lt. LaForge"},
+            {":~)","classic : broken nose"},
+            {":-?","classic : pipe smoking"},
+            {"x","classic : "},
+            {"y","classic : "},
+            {"z","classic : "},
         };
         public static Dictionary<string, string> mini = new Dictionary<string, string>() {
             {":)","mini : smiling face"},
@@ -58,11 +77,18 @@ namespace awesomescr
             {"-_-","kaomoji : "},
             {"o_O","kaomoji : "},
             {"T_T","kaomoji : crying / sadness"},
-            {"x_x","kaomoji : stressed"},
+            {"x_x","kaomoji : dead / stressed"},
+            {"x_X","kaomoji : dead / stressed"},
             {"ಠ_ಠ","kaomoji : disapproval / disbelief"},
             {"ʕ•́ᴥ•̀ʔ","kaomoji : bear"},
+            {"ʕಠᴥಠʔ","kaomoji : angry bear"},
+            {"ʕծ‸ ծʔ","kaomoji : sad bear"},
             {"≧◉ᴥ◉≦","kaomoji : cat"},
             {"¯\\_(ツ)_/¯","kaomoji : shrug"},
+            {"( ͡° ͜ʖ ͡°)","kaomoji : Le Lenny"},
+            {"(@ @)","kaomoji : You're kidding!"},
+            {"( ¬‿¬)", "kaomoji : happy / He he he"},
+            {"(⌐■_■)", "kaomoji : sun glasses / cool"},
         };
     }
 }
