@@ -21,15 +21,14 @@ namespace awesomescr
         private Timer timer;
         private Point mouse;
         private int padding = 5;
-        private bool preview = false, system = true;
+        private bool preview = false;
         private Provider provider;
         private List<Provider> providers = new List<Provider>();
         private Label info, text;
         private Random random = new Random();
-        public Screensaver(Rectangle Bounds, bool system)
+        public Screensaver(Rectangle Bounds)
         {
             this.Bounds = Bounds;
-            this.system = system;
             InitializeComponent();
         }
         public Screensaver(IntPtr PreviewWndHandle)
@@ -98,7 +97,7 @@ namespace awesomescr
             this.AutoScaleDimensions = new SizeF(6F, 13F);
             this.BackColor = Color.Black;
             if (settings.acrylic_desktop.Checked) {
-                this.BackgroundImage = system ? BackgroundFromFile() : BackgroundFromScreen();
+                this.BackgroundImage = randomBackground();
                 this.BackgroundImageLayout = ImageLayout.Stretch;
             }
             this.FormBorderStyle = FormBorderStyle.None;
@@ -123,30 +122,14 @@ namespace awesomescr
             this.MouseMove += new MouseEventHandler(this.Screen_MouseMove);
             this.timer = new Timer(this.components);
         }
-        private Bitmap BackgroundFromFile()
+        private Bitmap randomBackground()
         {
-            int alpha = 200, scale = 3;
-            using (Image bitmap = Image.FromFile("res/desktop-2.jpg"))
+            int alpha = 200, scale = 3, img = random.Next(2) + 1;
+            using (Image bitmap = Image.FromFile("res/desktop-" + img + ".jpg"))
             {
                 Rectangle bounds = new Rectangle(0 ,0, bitmap.Width, bitmap.Height);
                 using (Graphics g = Graphics.FromImage(bitmap))
                 {
-                    using (Brush brush = new SolidBrush(Color.FromArgb(alpha, Color.Black)))
-                    {
-                        g.FillRectangle(brush, bounds);
-                    }
-                }
-                return new Bitmap(bitmap,new Size(bitmap.Width/scale,bitmap.Height/scale));
-            }
-        }
-        private Bitmap BackgroundFromScreen()
-        {
-            Rectangle bounds = this.Bounds; int alpha = 200, scale = 16;
-            using (Bitmap bitmap = new Bitmap(bounds.Width, bounds.Height))
-            {
-                using (Graphics g = Graphics.FromImage(bitmap))
-                {
-                    g.CopyFromScreen(0,0,0,0, bitmap.Size);
                     using (Brush brush = new SolidBrush(Color.FromArgb(alpha, Color.Black)))
                     {
                         g.FillRectangle(brush, bounds);
