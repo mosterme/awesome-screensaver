@@ -14,7 +14,7 @@ namespace awesomescr
                 if (args[0].ToLower().Trim().Substring(0, 2) == "/s") //show
                 {
                     //show the screen saver
-                    ShowScreenSaver();
+                    ShowScreenSaver(true);
                     Application.Run();
                 }
                 else if (args[0].ToLower().Trim().Substring(0, 2) == "/p") //preview
@@ -33,15 +33,15 @@ namespace awesomescr
             else
             {
                 //no arguments were passed (we should probably show the screen saver)
-                ShowScreenSaver();
+                ShowScreenSaver(false);
                 Application.Run();
             }
         }
-        static void ShowScreenSaver()
+        static void ShowScreenSaver(bool system)
         {
             foreach (Screen screen in Screen.AllScreens)
             {
-                Screensaver screensaver = new Screensaver(screen.Bounds);
+                Screensaver screensaver = new Screensaver(screen.Bounds, system);
                 screensaver.Show();
             }
         }
