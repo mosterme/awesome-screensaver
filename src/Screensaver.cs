@@ -88,7 +88,6 @@ namespace awesomescr
             if (settings.font_awesome_47.Checked) providers.Add(new Awesome());
             if (settings.smileys_classic.Checked) providers.Add(new Smileys(Smileys.classic));
             if (settings.smileys_kaomoji.Checked) providers.Add(new Smileys(Smileys.kaomoji));
-            if (settings.smileys_mini.Checked) providers.Add(new Smileys(Smileys.mini));
             if (settings.unicode_egypt.Checked) providers.Add(new Unicode(Unicode.african_scripts));
             if (settings.unicode_emoji.Checked) providers.Add(new Unicode(Unicode.emoji_pictographs));
             if (settings.unicode_maths.Checked) providers.Add(new Unicode(Unicode.mathematical_symbols));
@@ -97,6 +96,10 @@ namespace awesomescr
             this.components = new System.ComponentModel.Container();
             this.AutoScaleDimensions = new SizeF(6F, 13F);
             this.BackColor = Color.Black;
+            if (settings.acrylic_desktop.Checked) {
+                this.BackgroundImage = randomBackground();
+                this.BackgroundImageLayout = ImageLayout.Stretch;
+            }
             this.FormBorderStyle = FormBorderStyle.None;
             this.info = new Label();
             this.info.AutoSize = true;
@@ -106,6 +109,7 @@ namespace awesomescr
             this.info.BringToFront();
             this.text = new Label();
             this.text.AutoSize = true;
+            this.text.BackColor = Color.Transparent;
             this.text.Font = new Font("FontAwesome", 200);
             this.text.Text = randomText();
             this.text.ForeColor = randomColor();
@@ -117,6 +121,22 @@ namespace awesomescr
             this.MouseClick += new MouseEventHandler(this.Screen_MouseClick);
             this.MouseMove += new MouseEventHandler(this.Screen_MouseMove);
             this.timer = new Timer(this.components);
+        }
+        private Bitmap randomBackground()
+        {
+            int alpha = 200, scale = 3, img = random.Next(2) + 1;
+            using (Image bitmap = Image.FromFile("res/desktop-" + img + ".jpg"))
+            {
+                Rectangle bounds = new Rectangle(0 ,0, bitmap.Width, bitmap.Height);
+                using (Graphics g = Graphics.FromImage(bitmap))
+                {
+                    using (Brush brush = new SolidBrush(Color.FromArgb(alpha, Color.Black)))
+                    {
+                        g.FillRectangle(brush, bounds);
+                    }
+                }
+                return new Bitmap(bitmap,new Size(bitmap.Width/scale,bitmap.Height/scale));
+            }
         }
         private Color randomColor()
         {
