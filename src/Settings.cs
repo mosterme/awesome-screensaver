@@ -46,7 +46,7 @@ namespace awesomescr
             label_mini.Text = "Smileys (mini)";
             label_mini.Location = new Point(margin, 100);
             smileys_mini.Location = new Point(label_mini.Location.X + label_mini.Bounds.Right + Padding.Right, label_mini.Location.Y);
-            label_egypt.Text = "Egyptian Hieroglyphs";
+            label_egypt.Text = "African Scripts";
             label_egypt.Location = new Point(margin, 130);
             unicode_egypt.Location = new Point(label_egypt.Location.X + label_egypt.Bounds.Right + Padding.Right, label_egypt.Location.Y);
             label_emoji.Text = "Emoji + Pictographs";

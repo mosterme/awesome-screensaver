@@ -33,8 +33,25 @@ namespace awesomescr
             UnicodeCharInfo u = UnicodeInfo.GetCharInfo(i);
             return version + " : " + u.Block + " : " + u.Category + " : " + u.Name; // +  " : " + u.CodePoint.ToString("X4");
         }
-        public static HashSet<string> egyptian_hieroglyphs = new HashSet<string>(){
+        public static HashSet<string> african_scripts = new HashSet<string>(){
+            "Adlam",
+            //"Bamum",
+            //"Bamum Supplement",
+            //"Bassa Vah",
+            "Coptic",
+            "Greek and Coptic",
             "Egyptian Hieroglyphs",
+            "Ethiopic",
+            "Ethiopic Extended",
+            "Ethiopic Extended-A",
+            "Ethiopic Supplement",
+            //"Mende Kikakui",
+            //"Meroitic Cursive",
+            //"Meroitic Hieroglyphs",
+            "NKo",
+            "Osmanya",
+            "Tifinagh",
+            "Vai",
         };
         public static HashSet<string> emoji_pictographs = new HashSet<string>(){
             "Dingbats",
