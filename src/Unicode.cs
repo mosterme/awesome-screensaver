@@ -53,6 +53,15 @@ namespace awesomescr
             "Tifinagh",
             "Vai",
         };
+        public static HashSet<string> american_scripts = new HashSet<string>(){
+            "Cherokee",
+            "Cherokee Supplement",
+            "Deseret",
+            "Osage",
+            "Unified Canadian Aboriginal Syllabics",
+            "Unified Canadian Aboriginal Syllabics Extended",
+
+        };
         public static HashSet<string> emoji_pictographs = new HashSet<string>(){
             "Dingbats",
             "Emoticons",
