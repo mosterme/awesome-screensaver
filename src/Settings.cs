@@ -6,7 +6,10 @@ namespace awesomescr
 {
     public class Settings : Form
     {
-        public CheckBox acrylic_desktop = new CheckBox();
+        public string acrylic_folder = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures) + "\\Awesome";
+        public int acrylic_alpha = 230;
+        public int acrylic_blur  = 3;
+        public CheckBox acrylic_enabled = new CheckBox();
         public CheckBox font_awesome_47 = new CheckBox();
         public CheckBox smileys_classic = new CheckBox();
         public CheckBox smileys_kaomoji = new CheckBox();
@@ -53,7 +56,7 @@ namespace awesomescr
             label_kaomoji.Location = new Point(margin, 70);
             smileys_kaomoji.Location = new Point(label_kaomoji.Location.X + label_kaomoji.Bounds.Right + Padding.Right, label_kaomoji.Location.Y);
             label_acrylic.Location = new Point(margin, 100);
-            acrylic_desktop.Location = new Point(label_acrylic.Location.X + label_acrylic.Bounds.Right + Padding.Right, label_acrylic.Location.Y);
+            acrylic_enabled.Location = new Point(label_acrylic.Location.X + label_acrylic.Bounds.Right + Padding.Right, label_acrylic.Location.Y);
             label_egypt.Location = new Point(margin, 130);
             unicode_egypt.Location = new Point(label_egypt.Location.X + label_egypt.Bounds.Right + Padding.Right, label_egypt.Location.Y);
             label_emoji.Location = new Point(margin, 160);
@@ -80,7 +83,7 @@ namespace awesomescr
             this.Controls.Add(label_kaomoji);
             this.Controls.Add(smileys_kaomoji);
             this.Controls.Add(label_acrylic);
-            this.Controls.Add(acrylic_desktop);
+            this.Controls.Add(acrylic_enabled);
             this.Controls.Add(label_egypt);
             this.Controls.Add(unicode_egypt);
             this.Controls.Add(label_emoji);
@@ -105,7 +108,7 @@ namespace awesomescr
         {
             // Create or get existing Registry subkey
             RegistryKey key = Registry.CurrentUser.CreateSubKey("Software\\Awesome Screensaver");
-            key.SetValue("acrylic_desktop", acrylic_desktop.Checked, RegistryValueKind.DWord);
+            key.SetValue("acrylic_enabled", acrylic_enabled.Checked, RegistryValueKind.DWord);
             key.SetValue("font_awesome_47", font_awesome_47.Checked, RegistryValueKind.DWord);
             key.SetValue("smileys_classic", smileys_classic.Checked, RegistryValueKind.DWord);
             key.SetValue("smileys_kaomoji", smileys_kaomoji.Checked, RegistryValueKind.DWord);
@@ -125,8 +128,8 @@ namespace awesomescr
             else
             {
                 object keyvalue = null;
-                keyvalue = key.GetValue("acrylic_desktop");
-                if (keyvalue != null) acrylic_desktop.Checked = (int) keyvalue > 0;
+                keyvalue = key.GetValue("acrylic_enabled");
+                if (keyvalue != null) acrylic_enabled.Checked = (int) keyvalue > 0;
                 keyvalue = key.GetValue("font_awesome_47");
                 if (keyvalue != null) font_awesome_47.Checked = (int) keyvalue > 0;
                 keyvalue = key.GetValue("smileys_classic");

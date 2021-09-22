@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System;
@@ -96,8 +97,8 @@ namespace awesomescr
             this.components = new System.ComponentModel.Container();
             this.AutoScaleDimensions = new SizeF(6F, 13F);
             this.BackColor = Color.Black;
-            if (settings.acrylic_desktop.Checked) {
-                this.BackgroundImage = randomBackground();
+            if (settings.acrylic_enabled.Checked) {
+                this.BackgroundImage = randomBackground(settings.acrylic_alpha, settings.acrylic_blur, settings.acrylic_folder);
                 this.BackgroundImageLayout = ImageLayout.Stretch;
             }
             this.FormBorderStyle = FormBorderStyle.None;
@@ -122,10 +123,10 @@ namespace awesomescr
             this.MouseMove += new MouseEventHandler(this.Screen_MouseMove);
             this.timer = new Timer(this.components);
         }
-        private Bitmap randomBackground()
+        private Bitmap randomBackground(int alpha, int blur, string folder)
         {
-            int alpha = 200, scale = 3, img = random.Next(2) + 1;
-            using (Image bitmap = Image.FromFile("res/desktop-" + img + ".jpg"))
+            String[] files = Directory.GetFiles(folder);
+            using (Image bitmap = Image.FromFile(files[random.Next(files.Length)]))
             {
                 Rectangle bounds = new Rectangle(0 ,0, bitmap.Width, bitmap.Height);
                 using (Graphics g = Graphics.FromImage(bitmap))
@@ -135,7 +136,7 @@ namespace awesomescr
                         g.FillRectangle(brush, bounds);
                     }
                 }
-                return new Bitmap(bitmap,new Size(bitmap.Width/scale,bitmap.Height/scale));
+                return new Bitmap(bitmap,new Size(bitmap.Width/blur,bitmap.Height/blur));
             }
         }
         private Color randomColor()
