@@ -6,7 +6,7 @@ namespace awesomescr
 {
     public class Settings : Form
     {
-        public string acrylic_folder = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures) + "\\Awesome";
+        public TextBox acrylic_folder = new TextBox();
         public int acrylic_alpha = 230;
         public int acrylic_blur  = 3;
         public CheckBox acrylic_enabled = new CheckBox();
@@ -18,6 +18,8 @@ namespace awesomescr
         public CheckBox unicode_emoji = new CheckBox();
         public CheckBox unicode_maths = new CheckBox();
         public CheckBox unicode_other = new CheckBox();
+        private FolderBrowserDialog folderBrowserDialog1 = new FolderBrowserDialog();
+
         private static int label_x = 10, check_x = 150;
         public Settings(bool init_gui)
         {
@@ -38,6 +40,9 @@ namespace awesomescr
             Label label_emoji = new Label();
             Label label_maths = new Label();
             Label label_other = new Label();
+            Label label_alpha = new Label();
+            Label label_blur = new Label();
+            Label label_folder = new Label();
             label_awesome.Text = "Font Awesome 4.7";
             label_classic.Text = "Smileys (classic)";
             label_kaomoji.Text = "Smileys (kaomoji)";
@@ -47,6 +52,9 @@ namespace awesomescr
             label_maths.Text = "Mathematical Symbols";
             label_other.Text = "Other Symbols";
             label_acrylic.Text  = "Enable Acrylic";
+            label_alpha.Text = "Acrylic Alpha";
+            label_blur.Text  = "Acrylic Blur";
+            label_folder.Text  = "Acrylic Images Path";
 
             label_awesome.Width = label_classic.Width = label_kaomoji.Width = label_acrylic.Width = 130;
             label_african.Width = label_american.Width = label_emoji.Width = label_maths.Width = label_other.Width = 130;
@@ -101,10 +109,31 @@ namespace awesomescr
             tabPage2.Controls.Add(label_other);
             tabPage2.Controls.Add(unicode_other);
 
+            label_acrylic.Location = new Point(label_x, 10);
+            acrylic_enabled.Location = new Point(check_x, label_acrylic.Location.Y);
+            label_alpha.Location = new Point(label_x, 40);
+            label_blur.Location = new Point(label_x, 70);
+            label_folder.Location = new Point(label_x, 115);
+            label_folder.Width = 130;
+
+            Button button3 = new Button();
+            button3.Text = "📁"; // 🗁 📁 📂
+            button3.Width = 30;
+            button3.Location = new Point(155, 110);
+            button3.Click += new EventHandler(folderButton_Click);
+            acrylic_folder.Location = new Point(10, 138);
+            acrylic_folder.Width = 175;
+            acrylic_folder.Enabled = false;
+
             tabPage3.Text = "Screensaver ";
             tabPage3.TabIndex = 2;
             tabPage3.Controls.Add(label_acrylic);
             tabPage3.Controls.Add(acrylic_enabled);
+            tabPage3.Controls.Add(label_alpha);
+            tabPage3.Controls.Add(label_blur);
+            tabPage3.Controls.Add(label_folder);
+            tabPage3.Controls.Add(acrylic_folder);
+            tabPage3.Controls.Add(button3);
 
             this.Controls.Add(tabControl1);
             tabControl1.Controls.Add(tabPage1);
@@ -139,6 +168,15 @@ namespace awesomescr
         {
             Close();
         }
+        private void folderButton_Click(object sender, System.EventArgs e)
+        {
+            // Show the FolderBrowserDialog.
+            DialogResult result = folderBrowserDialog1.ShowDialog();
+            if( result == DialogResult.OK )
+            {
+                acrylic_folder.Text = folderBrowserDialog1.SelectedPath;
+            }
+        }
         private void SaveRegistrySettings()
         {
             // Create or get existing Registry subkey
@@ -152,6 +190,9 @@ namespace awesomescr
             key.SetValue("unicode_emoji", unicode_emoji.Checked, RegistryValueKind.DWord);
             key.SetValue("unicode_maths", unicode_maths.Checked, RegistryValueKind.DWord);
             key.SetValue("unicode_other", unicode_other.Checked, RegistryValueKind.DWord);
+            //key.SetValue("acrylic_alpha", unicode_other.Checked, RegistryValueKind.DWord);
+            //key.SetValue("acrylic_blur", unicode_other.Checked, RegistryValueKind.DWord);
+            key.SetValue("acrylic_folder", acrylic_folder.Text, RegistryValueKind.String);
         }
         private void LoadRegistrySettings()
         {
@@ -182,6 +223,17 @@ namespace awesomescr
                 if (keyvalue != null) unicode_maths.Checked = (int) keyvalue > 0;
                 keyvalue = key.GetValue("unicode_other");
                 if (keyvalue != null) unicode_other.Checked = (int) keyvalue > 0;
+                keyvalue = key.GetValue("acrylic_folder");
+                if (keyvalue != null) acrylic_folder.Text = keyvalue.ToString();
+            }
+
+            if (acrylic_folder.Text == null || acrylic_folder.Text.Length < 1)
+            {
+                folderBrowserDialog1.SelectedPath = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+            }
+            else
+            {
+                folderBrowserDialog1.SelectedPath = acrylic_folder.Text;
             }
         }
     }

@@ -99,7 +99,7 @@ namespace awesomescr
             this.AutoScaleDimensions = new SizeF(6F, 13F);
             this.BackColor = Color.Black;
             if (settings.acrylic_enabled.Checked) {
-                this.BackgroundImage = randomBackground(settings.acrylic_alpha, settings.acrylic_blur, settings.acrylic_folder);
+                this.BackgroundImage = randomBackground(settings.acrylic_alpha, settings.acrylic_blur, settings.acrylic_folder.Text);
                 this.BackgroundImageLayout = ImageLayout.Stretch;
             }
             this.FormBorderStyle = FormBorderStyle.None;
