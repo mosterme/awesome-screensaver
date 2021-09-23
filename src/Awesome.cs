@@ -5,8 +5,8 @@ namespace awesomescr
 {
     public class Awesome : Provider
     {
-        public static string version = "Font Awesome v4.7";
-        private static Random random = new Random();
+        public static readonly string version = "Font Awesome v4.7";
+        private static readonly Random random = new Random();
         public string next()
         {
             int i = data.ElementAt(random.Next(data.Count)).Key;
@@ -17,7 +17,7 @@ namespace awesomescr
             int i = Char.ConvertToUtf32(key,0);
             return version + " : " + data[i];
         }
-        private static Dictionary<int, string> data = new Dictionary<int, string>() {
+        private static readonly Dictionary<int, string> data = new Dictionary<int, string>() {
             {0xf000,"fa-glass"},
             {0xf001,"fa-music"},
             {0xf002,"fa-search"},
