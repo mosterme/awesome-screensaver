@@ -16,6 +16,7 @@ namespace awesomescr
         public CheckBox unicode_african = new CheckBox();
         public CheckBox unicode_american = new CheckBox();
         public CheckBox unicode_emoji = new CheckBox();
+        public CheckBox unicode_oceania = new CheckBox();
         public CheckBox unicode_maths = new CheckBox();
         public CheckBox unicode_middle = new CheckBox();
         public CheckBox unicode_other = new CheckBox();
@@ -29,9 +30,6 @@ namespace awesomescr
         }
         private void InitializeComponent()
         {
-            this.Height = 320;
-            this.Width = 225;
-
             Label label_acrylic = new Label();
             Label label_awesome = new Label();
             Label label_classic = new Label();
@@ -39,6 +37,7 @@ namespace awesomescr
             Label label_african = new Label();
             Label label_american = new Label();
             Label label_emoji = new Label();
+            Label label_oceania = new Label();
             Label label_maths = new Label();
             Label label_middle = new Label();
             Label label_other = new Label();
@@ -51,6 +50,7 @@ namespace awesomescr
             label_african.Text = "African Scripts";
             label_american.Text = "American Scripts";
             label_emoji.Text = "Emoji + Pictographs";
+            label_oceania.Text = "Indonesia + Oceania Scripts";
             label_maths.Text = "Mathematical Symbols";
             label_middle.Text = "Middle Eastern Scripts";
             label_other.Text = "Other Symbols";
@@ -59,8 +59,9 @@ namespace awesomescr
             label_blur.Text  = "Acrylic Blur";
             label_folder.Text  = "Acrylic Images Path";
 
-            label_awesome.Width = label_classic.Width = label_kaomoji.Width = label_acrylic.Width = 130;
-            label_african.Width = label_american.Width = label_emoji.Width = label_maths.Width = label_middle.Width = label_other.Width = 130;
+            label_awesome.Width = label_classic.Width = label_kaomoji.Width = label_acrylic.Width = 
+            label_african.Width = label_american.Width = label_emoji.Width = label_oceania.Width = 
+            label_maths.Width = label_middle.Width = label_other.Width = 130;
             acrylic_alpha.Width = acrylic_blur.Width = 45;
             acrylic_folder.Width = 175;
 
@@ -77,11 +78,13 @@ namespace awesomescr
             unicode_american.Location = new Point(check_x, label_american.Location.Y);
             label_emoji.Location = new Point(label_x, 70);
             unicode_emoji.Location = new Point(check_x, label_emoji.Location.Y);
-            label_maths.Location = new Point(label_x, 100);
+            label_oceania.Location = new Point(label_x, 100);
+            unicode_oceania.Location = new Point(check_x, label_oceania.Location.Y);
+            label_maths.Location = new Point(label_x, 130);
             unicode_maths.Location = new Point(check_x, label_maths.Location.Y);
-            label_middle.Location = new Point(label_x, 130);
+            label_middle.Location = new Point(label_x, 160);
             unicode_middle.Location = new Point(check_x, label_middle.Location.Y);
-            label_other.Location = new Point(label_x, 160);
+            label_other.Location = new Point(label_x, 190);
             unicode_other.Location = new Point(check_x, label_other.Location.Y);
 
             label_acrylic.Location = new Point(label_x, 10);
@@ -96,7 +99,6 @@ namespace awesomescr
 
             TabControl tabControl1 = new TabControl();
             tabControl1.Location = new Point(5,5);
-            tabControl1.Size = new Size(200, 220);
             TabPage tabPage1 = new TabPage();
             TabPage tabPage2 = new TabPage();
             TabPage tabPage3 = new TabPage();
@@ -118,6 +120,8 @@ namespace awesomescr
             tabPage2.Controls.Add(unicode_american);
             tabPage2.Controls.Add(label_emoji);
             tabPage2.Controls.Add(unicode_emoji);
+            tabPage2.Controls.Add(label_oceania);
+            tabPage2.Controls.Add(unicode_oceania);
             tabPage2.Controls.Add(label_maths);
             tabPage2.Controls.Add(unicode_maths);
             tabPage2.Controls.Add(label_middle);
@@ -142,6 +146,9 @@ namespace awesomescr
             tabPage3.Controls.Add(label_folder);
             tabPage3.Controls.Add(acrylic_folder);
             tabPage3.Controls.Add(button3);
+
+            this.Size = new Size(225, 350);
+            tabControl1.Size = new Size(200, 250);
 
             this.Controls.Add(tabControl1);
             tabControl1.Controls.Add(tabPage1);
@@ -195,6 +202,7 @@ namespace awesomescr
             key.SetValue("unicode_american", unicode_american.Checked, RegistryValueKind.DWord);
             key.SetValue("unicode_african", unicode_african.Checked, RegistryValueKind.DWord);
             key.SetValue("unicode_emoji", unicode_emoji.Checked, RegistryValueKind.DWord);
+            key.SetValue("unicode_oceania", unicode_oceania.Checked, RegistryValueKind.DWord);
             key.SetValue("unicode_maths", unicode_maths.Checked, RegistryValueKind.DWord);
             key.SetValue("unicode_middle", unicode_middle.Checked, RegistryValueKind.DWord);
             key.SetValue("unicode_other", unicode_other.Checked, RegistryValueKind.DWord);
@@ -232,6 +240,8 @@ namespace awesomescr
                 if (keyvalue != null) unicode_african.Checked = Convert.ToBoolean(keyvalue);
                 keyvalue = key.GetValue("unicode_emoji");
                 if (keyvalue != null) unicode_emoji.Checked = Convert.ToBoolean(keyvalue);
+                keyvalue = key.GetValue("unicode_oceania");
+                if (keyvalue != null) unicode_oceania.Checked = Convert.ToBoolean(keyvalue);
                 keyvalue = key.GetValue("unicode_maths");
                 if (keyvalue != null) unicode_maths.Checked = Convert.ToBoolean(keyvalue);
                 keyvalue = key.GetValue("unicode_middle");

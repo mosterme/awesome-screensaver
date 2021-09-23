@@ -71,6 +71,20 @@ namespace awesomescr
             //"Symbols and Pictographs Extended-A",
             "Transport and Map Symbols",
         };
+        public static readonly HashSet<string> indonesia_oceania_scripts = new HashSet<string>(){
+            //"Balinese",
+            //"Batak",
+            "Buginese",
+            //"Buhid",
+            //"Hanunoo",
+            "Javanese",
+            //"Makasar",
+            //"Rejang",
+            //"Sundanese",
+            //"Sundanese Supplement",
+            //"Tagalog",
+            //"Tagbanwa",
+        };
         public static readonly HashSet<string> mathematical_symbols = new HashSet<string>(){
             "Arrows",
             "Supplemental Arrows-A",
