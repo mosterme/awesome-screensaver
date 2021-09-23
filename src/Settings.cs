@@ -49,12 +49,12 @@ namespace awesomescr
             label_awesome.Text = "Font Awesome 4.7";
             label_classic.Text = "Smileys (classic)";
             label_kaomoji.Text = "Smileys (kaomoji)";
-            label_emoji.Text = "Emoji + Pictographs";
+            label_emoji.Text = "Emoji && Pictographs";
             label_maths.Text = "Mathematical Symbols";
             label_other.Text = "Other Symbols";
             label_african.Text = "African Scripts";
             label_american.Text = "American Scripts";
-            label_oceania.Text = "Indonesia + Oceania Scripts";
+            label_oceania.Text = "Indonesia && Oceania Scripts";
             label_e_asian.Text = "East Asian Scripts";
             label_middle.Text = "Middle Eastern Scripts";
             label_acrylic.Text  = "Enable Acrylic";
