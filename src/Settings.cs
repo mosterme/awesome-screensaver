@@ -7,8 +7,8 @@ namespace awesomescr
     public class Settings : Form
     {
         public TextBox acrylic_folder = new TextBox();
-        public int acrylic_alpha = 230;
-        public int acrylic_blur  = 3;
+        public NumericUpDown acrylic_alpha = new NumericUpDown();
+        public NumericUpDown acrylic_blur  = new NumericUpDown();
         public CheckBox acrylic_enabled = new CheckBox();
         public CheckBox font_awesome_47 = new CheckBox();
         public CheckBox smileys_classic = new CheckBox();
@@ -58,6 +58,8 @@ namespace awesomescr
 
             label_awesome.Width = label_classic.Width = label_kaomoji.Width = label_acrylic.Width = 130;
             label_african.Width = label_american.Width = label_emoji.Width = label_maths.Width = label_other.Width = 130;
+            acrylic_alpha.Width = acrylic_blur.Width = 45;
+            acrylic_folder.Width = 175;
 
             label_awesome.Location = new Point(label_x, 10);
             font_awesome_47.Location = new Point(check_x, label_awesome.Location.Y);
@@ -79,6 +81,13 @@ namespace awesomescr
 
             label_acrylic.Location = new Point(label_x, 10);
             acrylic_enabled.Location = new Point(check_x, label_acrylic.Location.Y);
+            label_alpha.Location = new Point(label_x, 40);
+            acrylic_alpha.Location = new Point(145, 40);
+            label_blur.Location = new Point(label_x, 70);
+            acrylic_blur.Location = new Point(145, 70);
+            label_folder.Location = new Point(label_x, 115);
+            acrylic_folder.Location = new Point(10, 138);
+            acrylic_folder.Enabled = false;
 
             TabControl tabControl1 = new TabControl();
             tabControl1.Location = new Point(5,5);
@@ -109,28 +118,20 @@ namespace awesomescr
             tabPage2.Controls.Add(label_other);
             tabPage2.Controls.Add(unicode_other);
 
-            label_acrylic.Location = new Point(label_x, 10);
-            acrylic_enabled.Location = new Point(check_x, label_acrylic.Location.Y);
-            label_alpha.Location = new Point(label_x, 40);
-            label_blur.Location = new Point(label_x, 70);
-            label_folder.Location = new Point(label_x, 115);
-            label_folder.Width = 130;
-
             Button button3 = new Button();
             button3.Text = "📁"; // 🗁 📁 📂
             button3.Width = 30;
             button3.Location = new Point(155, 110);
             button3.Click += new EventHandler(folderButton_Click);
-            acrylic_folder.Location = new Point(10, 138);
-            acrylic_folder.Width = 175;
-            acrylic_folder.Enabled = false;
 
             tabPage3.Text = "Screensaver ";
             tabPage3.TabIndex = 2;
             tabPage3.Controls.Add(label_acrylic);
             tabPage3.Controls.Add(acrylic_enabled);
             tabPage3.Controls.Add(label_alpha);
+            tabPage3.Controls.Add(acrylic_alpha);
             tabPage3.Controls.Add(label_blur);
+            tabPage3.Controls.Add(acrylic_blur);
             tabPage3.Controls.Add(label_folder);
             tabPage3.Controls.Add(acrylic_folder);
             tabPage3.Controls.Add(button3);
@@ -181,7 +182,6 @@ namespace awesomescr
         {
             // Create or get existing Registry subkey
             RegistryKey key = Registry.CurrentUser.CreateSubKey("Software\\Awesome Screensaver");
-            key.SetValue("acrylic_enabled", acrylic_enabled.Checked, RegistryValueKind.DWord);
             key.SetValue("font_awesome_47", font_awesome_47.Checked, RegistryValueKind.DWord);
             key.SetValue("smileys_classic", smileys_classic.Checked, RegistryValueKind.DWord);
             key.SetValue("smileys_kaomoji", smileys_kaomoji.Checked, RegistryValueKind.DWord);
@@ -190,43 +190,53 @@ namespace awesomescr
             key.SetValue("unicode_emoji", unicode_emoji.Checked, RegistryValueKind.DWord);
             key.SetValue("unicode_maths", unicode_maths.Checked, RegistryValueKind.DWord);
             key.SetValue("unicode_other", unicode_other.Checked, RegistryValueKind.DWord);
-            //key.SetValue("acrylic_alpha", unicode_other.Checked, RegistryValueKind.DWord);
-            //key.SetValue("acrylic_blur", unicode_other.Checked, RegistryValueKind.DWord);
+            key.SetValue("acrylic_enabled", acrylic_enabled.Checked, RegistryValueKind.DWord);
+            key.SetValue("acrylic_alpha", acrylic_alpha.Value, RegistryValueKind.DWord);
+            key.SetValue("acrylic_blur", acrylic_blur.Value, RegistryValueKind.DWord);
             key.SetValue("acrylic_folder", acrylic_folder.Text, RegistryValueKind.String);
         }
         private void LoadRegistrySettings()
         {
+            // Need to initialize Min and Max values for NumberUpDowns
+            acrylic_alpha.Minimum = 0; acrylic_alpha.Maximum = 255;
+            acrylic_blur.Minimum = 0;  acrylic_blur.Maximum = 100;
             // Get the value stored in the Registry
             RegistryKey key = Registry.CurrentUser.OpenSubKey("Software\\Awesome Screensaver");
+            // Some default values
             if (key == null)
             {
                 smileys_classic.Checked = true;
+                acrylic_alpha.Value = 240;
+                acrylic_blur.Value = 5;
             }
             else
             {
                 object keyvalue = null;
-                keyvalue = key.GetValue("acrylic_enabled");
-                if (keyvalue != null) acrylic_enabled.Checked = (int) keyvalue > 0;
                 keyvalue = key.GetValue("font_awesome_47");
-                if (keyvalue != null) font_awesome_47.Checked = (int) keyvalue > 0;
+                if (keyvalue != null) font_awesome_47.Checked = Convert.ToBoolean(keyvalue);
                 keyvalue = key.GetValue("smileys_classic");
-                if (keyvalue != null) smileys_classic.Checked = (int) keyvalue > 0;
+                if (keyvalue != null) smileys_classic.Checked = Convert.ToBoolean(keyvalue);
                 keyvalue = key.GetValue("smileys_kaomoji");
-                if (keyvalue != null) smileys_kaomoji.Checked = (int) keyvalue > 0;
+                if (keyvalue != null) smileys_kaomoji.Checked = Convert.ToBoolean(keyvalue);
                 keyvalue = key.GetValue("unicode_american");
-                if (keyvalue != null) unicode_american.Checked = (int) keyvalue > 0;
+                if (keyvalue != null) unicode_american.Checked = Convert.ToBoolean(keyvalue);
                 keyvalue = key.GetValue("unicode_african");
-                if (keyvalue != null) unicode_african.Checked = (int) keyvalue > 0;
+                if (keyvalue != null) unicode_african.Checked = Convert.ToBoolean(keyvalue);
                 keyvalue = key.GetValue("unicode_emoji");
-                if (keyvalue != null) unicode_emoji.Checked = (int) keyvalue > 0;
+                if (keyvalue != null) unicode_emoji.Checked = Convert.ToBoolean(keyvalue);
                 keyvalue = key.GetValue("unicode_maths");
-                if (keyvalue != null) unicode_maths.Checked = (int) keyvalue > 0;
+                if (keyvalue != null) unicode_maths.Checked = Convert.ToBoolean(keyvalue);
                 keyvalue = key.GetValue("unicode_other");
-                if (keyvalue != null) unicode_other.Checked = (int) keyvalue > 0;
+                if (keyvalue != null) unicode_other.Checked = Convert.ToBoolean(keyvalue);
+                keyvalue = key.GetValue("acrylic_enabled");
+                if (keyvalue != null) acrylic_enabled.Checked = Convert.ToBoolean(keyvalue);
+                keyvalue = key.GetValue("acrylic_alpha");
+                if (keyvalue != null) acrylic_alpha.Value = Convert.ToDecimal(keyvalue);
+                keyvalue = key.GetValue("acrylic_blur");
+                if (keyvalue != null) acrylic_blur.Value = Convert.ToDecimal(keyvalue);
                 keyvalue = key.GetValue("acrylic_folder");
                 if (keyvalue != null) acrylic_folder.Text = keyvalue.ToString();
             }
-
             if (acrylic_folder.Text == null || acrylic_folder.Text.Length < 1)
             {
                 folderBrowserDialog1.SelectedPath = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
