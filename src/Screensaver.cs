@@ -99,6 +99,7 @@ namespace awesomescr
                 if (settings.unicode_other.Checked) providers.Add(new Unicode(Unicode.other_symbols));
                 if (settings.unicode_african.Checked) providers.Add(new Unicode(Unicode.african_scripts));
                 if (settings.unicode_american.Checked) providers.Add(new Unicode(Unicode.american_scripts));
+                if (settings.unicode_c_asian.Checked) providers.Add(new Unicode(Unicode.central_asian_scripts));
                 if (settings.unicode_e_asian.Checked) providers.Add(new Unicode(Unicode.east_asian_scripts));
                 if (settings.unicode_oceania.Checked) providers.Add(new Unicode(Unicode.indonesia_oceania_scripts));
                 if (settings.unicode_middle.Checked) providers.Add(new Unicode(Unicode.middle_eastern_scripts));
