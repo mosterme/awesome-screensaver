@@ -7,9 +7,9 @@ namespace awesomescr
 {
     public class Unicode : Provider
     {
-        public static String version = "Unicode v" + UnicodeInfo.UnicodeVersion.ToString(2);
-        private static Random random = new Random();
-        public Dictionary<string, UnicodeBlock> blocks = new Dictionary<string, UnicodeBlock>();
+        public static readonly string version = "Unicode v" + UnicodeInfo.UnicodeVersion.ToString(2);
+        private static readonly Random random = new Random();
+        private Dictionary<string, UnicodeBlock> blocks = new Dictionary<string, UnicodeBlock>();
         public Unicode(HashSet<string> preset)
         {
             foreach (UnicodeBlock ub in UnicodeInfo.GetBlocks())
@@ -33,7 +33,7 @@ namespace awesomescr
             UnicodeCharInfo u = UnicodeInfo.GetCharInfo(i);
             return version + " : " + u.Block + " : " + u.Category + " : " + u.Name; // +  " : " + u.CodePoint.ToString("X4");
         }
-        public static HashSet<string> african_scripts = new HashSet<string>(){
+        public static readonly HashSet<string> african_scripts = new HashSet<string>(){
             "Adlam",
             //"Bamum",
             //"Bamum Supplement",
@@ -53,16 +53,52 @@ namespace awesomescr
             "Tifinagh",
             "Vai",
         };
-        public static HashSet<string> american_scripts = new HashSet<string>(){
+        public static readonly HashSet<string> american_scripts = new HashSet<string>(){
             "Cherokee",
             "Cherokee Supplement",
             "Deseret",
             "Osage",
             "Unified Canadian Aboriginal Syllabics",
             "Unified Canadian Aboriginal Syllabics Extended",
-
         };
-        public static HashSet<string> emoji_pictographs = new HashSet<string>(){
+        public static readonly HashSet<string> east_asian_scripts = new HashSet<string>(){
+            "Bopomofo",
+            //"Bopomofo Extended",
+            "CJK Compatibility",
+            //"CJK Compatibility Forms",
+            "CJK Compatibility Ideographs",
+            //"CJK Compatibility Ideographs Supplement",
+            "CJK Radicals Supplement",
+            //"CJK Strokes",
+            "CJK Symbols and Punctuation",
+            "CJK Unified Ideographs",
+            "CJK Unified Ideographs Extension A",
+            "CJK Unified Ideographs Extension B",
+            "CJK Unified Ideographs Extension C",
+            "CJK Unified Ideographs Extension D",
+            //"CJK Unified Ideographs Extension E",
+            //"Halfwidth and Fullwidth Forms",
+            "Hangul Jamo",
+            "Hangul Compatibility Jamo",
+            "Hangul Jamo Extended-A",
+            "Hangul Jamo Extended-B",
+            "Hangul Syllables",
+            //"Hanunoo",
+            "Hiragana",
+            //"Ideographic Description Characters",
+            //"Ideographic Symbols and Punctuation",
+            //"Kana Supplement",
+            "Kanbun",
+            "Katakana",
+            "Katakana Phonetic Extensions",
+            "Lisu",
+            //"Miao",
+            //"Tangut",
+            //"Tangut Components",
+            "Yi Radicals",
+            "Yi Syllables",
+        };
+        public static readonly HashSet<string> emoji_pictographs = new HashSet<string>(){
             "Dingbats",
             "Emoticons",
             "Miscellaneous Symbols",
@@ -71,7 +107,21 @@ namespace awesomescr
             //"Symbols and Pictographs Extended-A",
             "Transport and Map Symbols",
         };
-        public static HashSet<string> mathematical_symbols = new HashSet<string>(){
+        public static readonly HashSet<string> indonesia_oceania_scripts = new HashSet<string>(){
+            //"Balinese",
+            //"Batak",
+            "Buginese",
+            //"Buhid",
+            //"Hanunoo",
+            "Javanese",
+            //"Makasar",
+            //"Rejang",
+            //"Sundanese",
+            //"Sundanese Supplement",
+            //"Tagalog",
+            //"Tagbanwa",
+        };
+        public static readonly HashSet<string> mathematical_symbols = new HashSet<string>(){
             "Arrows",
             "Supplemental Arrows-A",
             "Supplemental Arrows-B",
@@ -88,7 +138,7 @@ namespace awesomescr
             "Geometric Shapes",
             "Geometric Shapes Extended",
         };
-        public static HashSet<string> middle_eastern_scripts = new HashSet<string>(){
+        public static readonly HashSet<string> middle_eastern_scripts = new HashSet<string>(){
             "Arabic Extended-A",
             "Arabic Presentation Forms-B",
             "Arabic Supplement",
@@ -119,7 +169,7 @@ namespace awesomescr
             //"Ugaritic",
             //"Yezidi",
         };
-        public static HashSet<string> other_symbols = new HashSet<string>(){
+        public static readonly HashSet<string> other_symbols = new HashSet<string>(){
             "Alchemical Symbols",
             "Currency Symbols",
             "Domino Tiles",
@@ -128,7 +178,7 @@ namespace awesomescr
             "Miscellaneous Symbols and Arrows",
             "Yijing Hexagram Symbols",
         };
-        private static HashSet<UnicodeCategory> categories = new HashSet<UnicodeCategory>(){
+        private static readonly HashSet<UnicodeCategory> categories = new HashSet<UnicodeCategory>(){
             //UnicodeCategory.Control,
             //UnicodeCategory.LineSeparator,
             //UnicodeCategory.ModifierSymbol,

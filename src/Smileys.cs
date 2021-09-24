@@ -5,8 +5,8 @@ namespace awesomescr
 {
     class Smileys : Provider
     {
-        public static string version = "Smileys v1.4";
-        private static Random random = new Random();
+        public static readonly string version = "Smileys v1.4";
+        private static readonly Random random = new Random();
         private Dictionary<string, string> data;
         public Smileys(Dictionary<string, string> preset)
         {
@@ -20,7 +20,7 @@ namespace awesomescr
         {
             return version + " : " + data[key];
         }
-        public static Dictionary<string, string> classic = new Dictionary<string, string>() {
+        public static readonly Dictionary<string, string> classic = new Dictionary<string, string>() {
             {":-)","classic : smiling happy face / don't take me too seriously"},
             {";-)","classic : winking happy face / something said tongue-in-cheek"},
             {":-(","classic : disappointed / sad"},
@@ -54,7 +54,7 @@ namespace awesomescr
             {"q:-)","classic : baseball cap backwards"},
             {"-","classic : "},
         };
-        public static Dictionary<string, string> mini = new Dictionary<string, string>() {
+        public static readonly Dictionary<string, string> mini = new Dictionary<string, string>() {
             {":)","mini : smiling face"},
             {";)","mini : winking face"},
             {";(","mini : crying face"},
@@ -70,7 +70,7 @@ namespace awesomescr
             {"=)","mini : big smile"},
             {"-","mini : "},
         };
-        public static Dictionary<string, string> kaomoji = new Dictionary<string, string>() {
+        public static readonly Dictionary<string, string> kaomoji = new Dictionary<string, string>() {
             {"-_-","kaomoji : "},
             {"( ͡° ͜ʖ ͡°)","kaomoji : Le Lenny"},
             {"( ¬‿¬)", "kaomoji : happy / He he he"},

@@ -18,23 +18,27 @@ namespace awesomescr
         [DllImport("user32.dll")]
         static extern bool GetClientRect(IntPtr hWnd, out Rectangle lpRect);
         #endregion
+        private static List<Provider> providers = new List<Provider>();
+        private static Settings settings = new Settings(false);
+        private static Random random = new Random();
+        private static String[] backgrounds = Directory.GetFiles(settings.acrylic_folder.Text);
         private System.ComponentModel.IContainer components = null;
         private Timer timer;
         private Point mouse;
         private int padding = 5;
         private bool preview = false;
         private Provider provider;
-        private List<Provider> providers = new List<Provider>();
         private Label info, text;
-        private Random random = new Random();
         public Screensaver(Rectangle Bounds)
         {
             this.Bounds = Bounds;
+            InitializeProviders();
             InitializeComponent();
         }
         public Screensaver(IntPtr PreviewWndHandle)
         {
             padding = 1; preview = true; this.Bounds = new Rectangle(0,0,150,100);
+            InitializeProviders();
             InitializeComponent();
             // Make the info and text label font size smaller
             info.Font = new Font(info.Font.FontFamily, info.Font.Size / 2);
@@ -83,24 +87,31 @@ namespace awesomescr
         {
             if (!preview) Application.Exit();
         }
+        private void InitializeProviders()
+        {
+            if (providers.Count == 0)
+            {
+                if (settings.font_awesome_47.Checked) providers.Add(new Awesome());
+                if (settings.smileys_classic.Checked) providers.Add(new Smileys(Smileys.classic));
+                if (settings.smileys_kaomoji.Checked) providers.Add(new Smileys(Smileys.kaomoji));
+                if (settings.unicode_emoji.Checked) providers.Add(new Unicode(Unicode.emoji_pictographs));
+                if (settings.unicode_maths.Checked) providers.Add(new Unicode(Unicode.mathematical_symbols));
+                if (settings.unicode_other.Checked) providers.Add(new Unicode(Unicode.other_symbols));
+                if (settings.unicode_african.Checked) providers.Add(new Unicode(Unicode.african_scripts));
+                if (settings.unicode_american.Checked) providers.Add(new Unicode(Unicode.american_scripts));
+                if (settings.unicode_e_asian.Checked) providers.Add(new Unicode(Unicode.east_asian_scripts));
+                if (settings.unicode_oceania.Checked) providers.Add(new Unicode(Unicode.indonesia_oceania_scripts));
+                if (settings.unicode_middle.Checked) providers.Add(new Unicode(Unicode.middle_eastern_scripts));
+                if (providers.Count == 0) providers.Add(new Smileys(Smileys.classic)); // fallback
+            }
+        }
         private void InitializeComponent()
         {
-            Settings settings = new Settings(false);
-            if (settings.font_awesome_47.Checked) providers.Add(new Awesome());
-            if (settings.smileys_classic.Checked) providers.Add(new Smileys(Smileys.classic));
-            if (settings.smileys_kaomoji.Checked) providers.Add(new Smileys(Smileys.kaomoji));
-            if (settings.unicode_african.Checked) providers.Add(new Unicode(Unicode.african_scripts));
-            if (settings.unicode_american.Checked) providers.Add(new Unicode(Unicode.american_scripts));
-            if (settings.unicode_emoji.Checked) providers.Add(new Unicode(Unicode.emoji_pictographs));
-            if (settings.unicode_maths.Checked) providers.Add(new Unicode(Unicode.mathematical_symbols));
-            if (settings.unicode_middle.Checked) providers.Add(new Unicode(Unicode.middle_eastern_scripts));
-            if (settings.unicode_other.Checked) providers.Add(new Unicode(Unicode.other_symbols));
-            this.provider = randomProvider();
             this.components = new System.ComponentModel.Container();
             this.AutoScaleDimensions = new SizeF(6F, 13F);
             this.BackColor = Color.Black;
             if (settings.acrylic_enabled.Checked) {
-                this.BackgroundImage = randomBackground(Decimal.ToInt32(settings.acrylic_alpha.Value), Decimal.ToInt32(settings.acrylic_blur.Value), settings.acrylic_folder.Text);
+                this.BackgroundImage = randomBackground(Decimal.ToInt32(settings.acrylic_alpha.Value), Decimal.ToInt32(settings.acrylic_blur.Value));
                 this.BackgroundImageLayout = ImageLayout.Stretch;
             }
             this.FormBorderStyle = FormBorderStyle.None;
@@ -110,6 +121,7 @@ namespace awesomescr
             this.info.ForeColor = Color.Gainsboro;
             this.info.Location = new Point(padding, padding);
             this.info.BringToFront();
+            this.provider = randomProvider();
             this.text = new Label();
             this.text.AutoSize = true;
             this.text.BackColor = Color.Transparent;
@@ -124,11 +136,11 @@ namespace awesomescr
             this.MouseClick += new MouseEventHandler(this.Screen_MouseClick);
             this.MouseMove += new MouseEventHandler(this.Screen_MouseMove);
             this.timer = new Timer(this.components);
+            this.StartPosition = FormStartPosition.Manual;
         }
-        private Bitmap randomBackground(int alpha, int blur, string folder)
+        private Bitmap randomBackground(int alpha, int blur)
         {
-            String[] files = Directory.GetFiles(folder);
-            using (Image bitmap = Image.FromFile(files[random.Next(files.Length)]))
+            using (Image bitmap = Image.FromFile(backgrounds[random.Next(backgrounds.Length)]))
             {
                 Rectangle bounds = new Rectangle(0 ,0, bitmap.Width, bitmap.Height);
                 using (Graphics g = Graphics.FromImage(bitmap))
