@@ -21,8 +21,6 @@ namespace awesomescr
         public CheckBox unicode_e_asian = new CheckBox();
         public CheckBox unicode_oceania = new CheckBox();
         public CheckBox unicode_middle = new CheckBox();
-        private FolderBrowserDialog folderBrowserDialog1 = new FolderBrowserDialog();
-
         private static int label_x = 10, check_x = 150;
         public Settings(bool init_gui)
         {
@@ -193,6 +191,15 @@ namespace awesomescr
         }
         private void folderButton_Click(object sender, System.EventArgs e)
         {
+            FolderBrowserDialog folderBrowserDialog1 = new FolderBrowserDialog();
+            if (acrylic_folder.Text == null || acrylic_folder.Text.Length < 1)
+            {
+                folderBrowserDialog1.SelectedPath = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+            }
+            else
+            {
+                folderBrowserDialog1.SelectedPath = acrylic_folder.Text;
+            }
             // Show the FolderBrowserDialog.
             DialogResult result = folderBrowserDialog1.ShowDialog();
             if( result == DialogResult.OK )
@@ -267,14 +274,6 @@ namespace awesomescr
                 if (keyvalue != null) acrylic_blur.Value = Convert.ToDecimal(keyvalue);
                 keyvalue = key.GetValue("acrylic_folder");
                 if (keyvalue != null) acrylic_folder.Text = keyvalue.ToString();
-            }
-            if (acrylic_folder.Text == null || acrylic_folder.Text.Length < 1)
-            {
-                folderBrowserDialog1.SelectedPath = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
-            }
-            else
-            {
-                folderBrowserDialog1.SelectedPath = acrylic_folder.Text;
             }
         }
     }

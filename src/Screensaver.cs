@@ -18,11 +18,10 @@ namespace awesomescr
         [DllImport("user32.dll")]
         static extern bool GetClientRect(IntPtr hWnd, out Rectangle lpRect);
         #endregion
-        private static Settings settings = new Settings(false);
         private static List<Provider> providers = new List<Provider>();
+        private static Settings settings = new Settings(false);
         private static Random random = new Random();
         private static String[] backgrounds = Directory.GetFiles(settings.acrylic_folder.Text);
-        private static bool loading = false;
         private System.ComponentModel.IContainer components = null;
         private Timer timer;
         private Point mouse;
@@ -33,11 +32,13 @@ namespace awesomescr
         public Screensaver(Rectangle Bounds)
         {
             this.Bounds = Bounds;
+            InitializeProviders();
             InitializeComponent();
         }
         public Screensaver(IntPtr PreviewWndHandle)
         {
             padding = 1; preview = true; this.Bounds = new Rectangle(0,0,150,100);
+            InitializeProviders();
             InitializeComponent();
             // Make the info and text label font size smaller
             info.Font = new Font(info.Font.FontFamily, info.Font.Size / 2);
@@ -86,11 +87,10 @@ namespace awesomescr
         {
             if (!preview) Application.Exit();
         }
-        private void InitializeComponent()
+        private void InitializeProviders()
         {
-            if (!loading)
+            if (providers.Count == 0)
             {
-                loading = true;
                 if (settings.font_awesome_47.Checked) providers.Add(new Awesome());
                 if (settings.smileys_classic.Checked) providers.Add(new Smileys(Smileys.classic));
                 if (settings.smileys_kaomoji.Checked) providers.Add(new Smileys(Smileys.kaomoji));
@@ -102,7 +102,11 @@ namespace awesomescr
                 if (settings.unicode_e_asian.Checked) providers.Add(new Unicode(Unicode.east_asian_scripts));
                 if (settings.unicode_oceania.Checked) providers.Add(new Unicode(Unicode.indonesia_oceania_scripts));
                 if (settings.unicode_middle.Checked) providers.Add(new Unicode(Unicode.middle_eastern_scripts));
+                if (providers.Count == 0) providers.Add(new Smileys(Smileys.classic)); // fallback
             }
+        }
+        private void InitializeComponent()
+        {
             this.components = new System.ComponentModel.Container();
             this.AutoScaleDimensions = new SizeF(6F, 13F);
             this.BackColor = Color.Black;
