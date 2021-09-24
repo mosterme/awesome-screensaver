@@ -61,6 +61,19 @@ namespace awesomescr
             "Unified Canadian Aboriginal Syllabics",
             "Unified Canadian Aboriginal Syllabics Extended",
         };
+        public static readonly HashSet<string> central_asian_scripts = new HashSet<string>(){
+            //"Manichaean",
+            //"Marchen",
+            "Mongolian",
+            //"Mongolian Supplement",
+            //"Old Sogdian",
+            "Old Turkic",
+            "Phags-pa",
+            //"Sogdian",
+            //"Soyombo",
+            "Tibetan",
+            //"Zanabazar Square",
+        };
         public static readonly HashSet<string> east_asian_scripts = new HashSet<string>(){
             "Bopomofo",
             //"Bopomofo Extended",

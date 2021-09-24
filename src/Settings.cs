@@ -18,6 +18,7 @@ namespace awesomescr
         public CheckBox unicode_other = new CheckBox();
         public CheckBox unicode_african = new CheckBox();
         public CheckBox unicode_american = new CheckBox();
+        public CheckBox unicode_c_asian = new CheckBox();
         public CheckBox unicode_e_asian = new CheckBox();
         public CheckBox unicode_oceania = new CheckBox();
         public CheckBox unicode_middle = new CheckBox();
@@ -38,6 +39,7 @@ namespace awesomescr
             Label label_other = new Label();
             Label label_african = new Label();
             Label label_american = new Label();
+            Label label_c_asian = new Label();
             Label label_e_asian = new Label();
             Label label_oceania = new Label();
             Label label_middle = new Label();
@@ -52,8 +54,9 @@ namespace awesomescr
             label_other.Text = "Other Symbols";
             label_african.Text = "African Scripts";
             label_american.Text = "American Scripts";
-            label_oceania.Text = "Indonesia && Oceania Scripts";
+            label_c_asian.Text = "Central Asian Scripts";
             label_e_asian.Text = "East Asian Scripts";
+            label_oceania.Text = "Indonesia && Oceania Scripts";
             label_middle.Text = "Middle Eastern Scripts";
             label_acrylic.Text  = "Enable Acrylic";
             label_alpha.Text = "Acrylic Alpha";
@@ -61,7 +64,7 @@ namespace awesomescr
             label_folder.Text  = "Acrylic Images Path";
 
             label_awesome.Width = label_classic.Width = label_kaomoji.Width = label_acrylic.Width = 
-            label_african.Width = label_american.Width = label_emoji.Width = label_oceania.Width = 
+            label_african.Width = label_american.Width = label_c_asian.Width = label_emoji.Width = label_oceania.Width = 
             label_maths.Width = label_middle.Width = label_other.Width = 130;
             acrylic_alpha.Width = acrylic_blur.Width = 45;
             acrylic_folder.Width = 175;
@@ -84,9 +87,11 @@ namespace awesomescr
             unicode_african.Location = new Point(check_x, label_african.Location.Y);
             label_american.Location = new Point(label_x, 40);
             unicode_american.Location = new Point(check_x, label_american.Location.Y);
-            label_e_asian.Location = new Point(label_x, 70);
+            label_c_asian.Location = new Point(label_x, 70);
+            unicode_c_asian.Location = new Point(check_x, label_c_asian.Location.Y);
+            label_e_asian.Location = new Point(label_x, 100);
             unicode_e_asian.Location = new Point(check_x, label_e_asian.Location.Y);
-            label_oceania.Location = new Point(label_x, 100);
+            label_oceania.Location = new Point(label_x, 130);
             unicode_oceania.Location = new Point(check_x, label_oceania.Location.Y);
             label_middle.Location = new Point(label_x, 160);
             unicode_middle.Location = new Point(check_x, label_middle.Location.Y);
@@ -128,6 +133,8 @@ namespace awesomescr
             tabPage2.Controls.Add(unicode_african);
             tabPage2.Controls.Add(label_american);
             tabPage2.Controls.Add(unicode_american);
+            tabPage2.Controls.Add(label_c_asian);
+            tabPage2.Controls.Add(unicode_c_asian);
             tabPage2.Controls.Add(label_e_asian);
             tabPage2.Controls.Add(unicode_e_asian);
             tabPage2.Controls.Add(label_oceania);
@@ -219,6 +226,7 @@ namespace awesomescr
             key.SetValue("unicode_other", unicode_other.Checked, RegistryValueKind.DWord);
             key.SetValue("unicode_african", unicode_african.Checked, RegistryValueKind.DWord);
             key.SetValue("unicode_american", unicode_american.Checked, RegistryValueKind.DWord);
+            key.SetValue("unicode_c_asian", unicode_c_asian.Checked, RegistryValueKind.DWord);
             key.SetValue("unicode_e_asian", unicode_e_asian.Checked, RegistryValueKind.DWord);
             key.SetValue("unicode_oceania", unicode_oceania.Checked, RegistryValueKind.DWord);
             key.SetValue("unicode_middle", unicode_middle.Checked, RegistryValueKind.DWord);
@@ -260,6 +268,8 @@ namespace awesomescr
                 if (keyvalue != null) unicode_african.Checked = Convert.ToBoolean(keyvalue);
                 keyvalue = key.GetValue("unicode_american");
                 if (keyvalue != null) unicode_american.Checked = Convert.ToBoolean(keyvalue);
+                keyvalue = key.GetValue("unicode_c_asian");
+                if (keyvalue != null) unicode_c_asian.Checked = Convert.ToBoolean(keyvalue);
                 keyvalue = key.GetValue("unicode_e_asian");
                 if (keyvalue != null) unicode_e_asian.Checked = Convert.ToBoolean(keyvalue);
                 keyvalue = key.GetValue("unicode_oceania");
