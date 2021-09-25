@@ -6,7 +6,6 @@ namespace awesomescr
     class Smileys : Provider
     {
         public static readonly string version = "Smileys v1.4";
-        private static readonly Random random = new Random();
         private Dictionary<string, string> data;
         public Smileys(Dictionary<string, string> preset)
         {
@@ -14,7 +13,7 @@ namespace awesomescr
         }
         public string next()
         {
-            return data.ElementAt(random.Next(data.Count)).Key;
+            return data.ElementAt(Screensaver.random.Next(data.Count)).Key;
         }
         public string info(string key)
         {

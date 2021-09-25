@@ -18,9 +18,9 @@ namespace awesomescr
         [DllImport("user32.dll")]
         static extern bool GetClientRect(IntPtr hWnd, out Rectangle lpRect);
         #endregion
+        public static readonly Random random = new Random(Environment.TickCount);
         private static List<Provider> providers = new List<Provider>();
         private static Settings settings = new Settings(false);
-        private static Random random = new Random();
         private static String[] backgrounds = Directory.GetFiles(settings.acrylic_folder.Text);
         private System.ComponentModel.IContainer components = null;
         private Timer timer;
@@ -97,6 +97,7 @@ namespace awesomescr
                 if (settings.unicode_emoji.Checked) providers.Add(new Unicode(Unicode.emoji_pictographs));
                 if (settings.unicode_maths.Checked) providers.Add(new Unicode(Unicode.mathematical_symbols));
                 if (settings.unicode_other.Checked) providers.Add(new Unicode(Unicode.other_symbols));
+                if (settings.unicode_european.Checked) providers.Add(new Unicode(Unicode.european_scripts));
                 if (settings.unicode_african.Checked) providers.Add(new Unicode(Unicode.african_scripts));
                 if (settings.unicode_american.Checked) providers.Add(new Unicode(Unicode.american_scripts));
                 if (settings.unicode_c_asian.Checked) providers.Add(new Unicode(Unicode.central_asian_scripts));
