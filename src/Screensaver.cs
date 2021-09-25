@@ -103,6 +103,8 @@ namespace awesomescr
                 if (settings.unicode_e_asian.Checked) providers.Add(new Unicode(Unicode.east_asian_scripts));
                 if (settings.unicode_oceania.Checked) providers.Add(new Unicode(Unicode.indonesia_oceania_scripts));
                 if (settings.unicode_middle.Checked) providers.Add(new Unicode(Unicode.middle_eastern_scripts));
+                if (settings.unicode_se_asian.Checked) providers.Add(new Unicode(Unicode.southeast_asian_scripts));
+                if (settings.unicode_s_asian.Checked) providers.Add(new Unicode(Unicode.south_asian_scripts));
                 if (providers.Count == 0) providers.Add(new Smileys(Smileys.classic)); // fallback
             }
         }
