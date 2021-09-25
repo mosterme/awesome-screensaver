@@ -16,6 +16,7 @@ namespace awesomescr
         public CheckBox unicode_emoji = new CheckBox();
         public CheckBox unicode_maths = new CheckBox();
         public CheckBox unicode_other = new CheckBox();
+        public CheckBox unicode_european = new CheckBox();
         public CheckBox unicode_african = new CheckBox();
         public CheckBox unicode_american = new CheckBox();
         public CheckBox unicode_c_asian = new CheckBox();
@@ -39,6 +40,7 @@ namespace awesomescr
             Label label_emoji = new Label();
             Label label_maths = new Label();
             Label label_other = new Label();
+            Label label_european = new Label();
             Label label_african = new Label();
             Label label_american = new Label();
             Label label_c_asian = new Label();
@@ -56,6 +58,7 @@ namespace awesomescr
             label_emoji.Text = "Emoji && Pictographs";
             label_maths.Text = "Mathematical Symbols";
             label_other.Text = "Other Symbols";
+            label_european.Text = "European Scripts";
             label_african.Text = "African Scripts";
             label_american.Text = "American Scripts";
             label_c_asian.Text = "Central Asian Scripts";
@@ -70,7 +73,7 @@ namespace awesomescr
             label_folder.Text  = "Acrylic Images Path";
 
             label_awesome.Width = label_classic.Width = label_kaomoji.Width = label_acrylic.Width = label_emoji.Width = label_other.Width =
-            label_african.Width = label_american.Width = label_c_asian.Width = label_oceania.Width =
+            label_european.Width = label_african.Width = label_american.Width = label_c_asian.Width = label_oceania.Width =
             label_maths.Width = label_middle.Width = label_se_asian.Width = label_s_asian.Width = 130;
             acrylic_alpha.Width = acrylic_blur.Width = 45;
             acrylic_folder.Width = 175;
@@ -105,6 +108,8 @@ namespace awesomescr
             unicode_se_asian.Location = new Point(check_x, label_se_asian.Location.Y);
             label_s_asian.Location = new Point(label_x, 220);
             unicode_s_asian.Location = new Point(check_x, label_s_asian.Location.Y);
+            label_european.Location = new Point(label_x, 250);
+            unicode_european.Location = new Point(check_x, label_european.Location.Y);
 
             label_acrylic.Location = new Point(label_x, 10);
             acrylic_enabled.Location = new Point(check_x, label_acrylic.Location.Y);
@@ -155,6 +160,8 @@ namespace awesomescr
             tabPage2.Controls.Add(unicode_se_asian);
             tabPage2.Controls.Add(label_s_asian);
             tabPage2.Controls.Add(unicode_s_asian);
+            tabPage2.Controls.Add(label_european);
+            tabPage2.Controls.Add(unicode_european);
 
             Button button3 = new Button();
             button3.Text = "📁"; // 🗁 📁 📂
@@ -174,8 +181,8 @@ namespace awesomescr
             tabPage3.Controls.Add(acrylic_folder);
             tabPage3.Controls.Add(button3);
 
-            this.Size = new Size(225, 375);
-            tabControl1.Size = new Size(200, 275);
+            this.Size = new Size(225, 400);
+            tabControl1.Size = new Size(200, 300);
 
             this.Controls.Add(tabControl1);
             tabControl1.Controls.Add(tabPage1);
@@ -238,6 +245,7 @@ namespace awesomescr
             key.SetValue("unicode_emoji", unicode_emoji.Checked, RegistryValueKind.DWord);
             key.SetValue("unicode_maths", unicode_maths.Checked, RegistryValueKind.DWord);
             key.SetValue("unicode_other", unicode_other.Checked, RegistryValueKind.DWord);
+            key.SetValue("unicode_european", unicode_european.Checked, RegistryValueKind.DWord);
             key.SetValue("unicode_african", unicode_african.Checked, RegistryValueKind.DWord);
             key.SetValue("unicode_american", unicode_american.Checked, RegistryValueKind.DWord);
             key.SetValue("unicode_c_asian", unicode_c_asian.Checked, RegistryValueKind.DWord);
@@ -280,6 +288,8 @@ namespace awesomescr
                 if (keyvalue != null) unicode_maths.Checked = Convert.ToBoolean(keyvalue);
                 keyvalue = key.GetValue("unicode_other");
                 if (keyvalue != null) unicode_other.Checked = Convert.ToBoolean(keyvalue);
+                keyvalue = key.GetValue("unicode_european");
+                if (keyvalue != null) unicode_european.Checked = Convert.ToBoolean(keyvalue);
                 keyvalue = key.GetValue("unicode_african");
                 if (keyvalue != null) unicode_african.Checked = Convert.ToBoolean(keyvalue);
                 keyvalue = key.GetValue("unicode_american");
