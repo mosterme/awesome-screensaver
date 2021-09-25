@@ -6,10 +6,9 @@ namespace awesomescr
     public class Awesome : Provider
     {
         public static readonly string version = "Font Awesome v4.7";
-        private static readonly Random random = new Random();
         public string next()
         {
-            int i = data.ElementAt(random.Next(data.Count)).Key;
+            int i = data.ElementAt(Screensaver.random.Next(data.Count)).Key;
             return Char.ConvertFromUtf32(i);
         }
         public string info(string key)

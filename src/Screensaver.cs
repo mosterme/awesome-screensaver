@@ -18,9 +18,9 @@ namespace awesomescr
         [DllImport("user32.dll")]
         static extern bool GetClientRect(IntPtr hWnd, out Rectangle lpRect);
         #endregion
+        public static readonly Random random = new Random(Environment.TickCount);
         private static List<Provider> providers = new List<Provider>();
         private static Settings settings = new Settings(false);
-        private static Random random = new Random();
         private static String[] backgrounds = Directory.GetFiles(settings.acrylic_folder.Text);
         private System.ComponentModel.IContainer components = null;
         private Timer timer;

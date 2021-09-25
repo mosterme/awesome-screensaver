@@ -8,7 +8,6 @@ namespace awesomescr
     public class Unicode : Provider
     {
         public static readonly string version = "Unicode v" + UnicodeInfo.UnicodeVersion.ToString(2);
-        private static readonly Random random = new Random();
         private Dictionary<string, UnicodeBlock> blocks = new Dictionary<string, UnicodeBlock>();
         public Unicode(HashSet<string> preset)
         {
@@ -19,10 +18,10 @@ namespace awesomescr
         }
         public string next()
         {
-            int fallback = 0x1F499; UnicodeBlock current = blocks.ElementAt(random.Next(blocks.Count)).Value;
+            int fallback = 0x1F499; UnicodeBlock current = blocks.ElementAt(Screensaver.random.Next(blocks.Count)).Value;
             while (fallback++ < 0x1F4A8)
             {
-                int result = random.Next(current.CodePointRange.FirstCodePoint, current.CodePointRange.LastCodePoint + 1);
+                int result = Screensaver.random.Next(current.CodePointRange.FirstCodePoint, current.CodePointRange.LastCodePoint + 1);
                 if (categories.Contains(UnicodeInfo.GetCharInfo(result).Category)) return Char.ConvertFromUtf32(result);
             }
             return Char.ConvertFromUtf32(fallback);
