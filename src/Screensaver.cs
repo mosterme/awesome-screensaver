@@ -97,6 +97,7 @@ namespace awesomescr
                 if (settings.unicode_emoji.Checked) providers.Add(new Unicode(Unicode.emoji_pictographs));
                 if (settings.unicode_maths.Checked) providers.Add(new Unicode(Unicode.mathematical_symbols));
                 if (settings.unicode_other.Checked) providers.Add(new Unicode(Unicode.other_symbols));
+                if (settings.unicode_european.Checked) providers.Add(new Unicode(Unicode.european_scripts));
                 if (settings.unicode_african.Checked) providers.Add(new Unicode(Unicode.african_scripts));
                 if (settings.unicode_american.Checked) providers.Add(new Unicode(Unicode.american_scripts));
                 if (settings.unicode_c_asian.Checked) providers.Add(new Unicode(Unicode.central_asian_scripts));
