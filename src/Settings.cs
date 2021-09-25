@@ -22,6 +22,8 @@ namespace awesomescr
         public CheckBox unicode_e_asian = new CheckBox();
         public CheckBox unicode_oceania = new CheckBox();
         public CheckBox unicode_middle = new CheckBox();
+        public CheckBox unicode_se_asian = new CheckBox();
+        public CheckBox unicode_s_asian = new CheckBox();
         private static int label_x = 10, check_x = 150;
         public Settings(bool init_gui)
         {
@@ -43,6 +45,8 @@ namespace awesomescr
             Label label_e_asian = new Label();
             Label label_oceania = new Label();
             Label label_middle = new Label();
+            Label label_se_asian = new Label();
+            Label label_s_asian = new Label();
             Label label_alpha = new Label();
             Label label_blur = new Label();
             Label label_folder = new Label();
@@ -58,14 +62,16 @@ namespace awesomescr
             label_e_asian.Text = "East Asian Scripts";
             label_oceania.Text = "Indonesia && Oceania Scripts";
             label_middle.Text = "Middle Eastern Scripts";
+            label_se_asian.Text = "Southeast Asian Scripts";
+            label_s_asian.Text = "South Asian Scripts";
             label_acrylic.Text  = "Enable Acrylic";
             label_alpha.Text = "Acrylic Alpha";
             label_blur.Text  = "Acrylic Blur";
             label_folder.Text  = "Acrylic Images Path";
 
-            label_awesome.Width = label_classic.Width = label_kaomoji.Width = label_acrylic.Width = 
-            label_african.Width = label_american.Width = label_c_asian.Width = label_emoji.Width = label_oceania.Width = 
-            label_maths.Width = label_middle.Width = label_other.Width = 130;
+            label_awesome.Width = label_classic.Width = label_kaomoji.Width = label_acrylic.Width = label_emoji.Width = label_other.Width =
+            label_african.Width = label_american.Width = label_c_asian.Width = label_oceania.Width =
+            label_maths.Width = label_middle.Width = label_se_asian.Width = label_s_asian.Width = 130;
             acrylic_alpha.Width = acrylic_blur.Width = 45;
             acrylic_folder.Width = 175;
 
@@ -95,6 +101,10 @@ namespace awesomescr
             unicode_oceania.Location = new Point(check_x, label_oceania.Location.Y);
             label_middle.Location = new Point(label_x, 160);
             unicode_middle.Location = new Point(check_x, label_middle.Location.Y);
+            label_se_asian.Location = new Point(label_x, 190);
+            unicode_se_asian.Location = new Point(check_x, label_se_asian.Location.Y);
+            label_s_asian.Location = new Point(label_x, 220);
+            unicode_s_asian.Location = new Point(check_x, label_s_asian.Location.Y);
 
             label_acrylic.Location = new Point(label_x, 10);
             acrylic_enabled.Location = new Point(check_x, label_acrylic.Location.Y);
@@ -141,6 +151,10 @@ namespace awesomescr
             tabPage2.Controls.Add(unicode_oceania);
             tabPage2.Controls.Add(label_middle);
             tabPage2.Controls.Add(unicode_middle);
+            tabPage2.Controls.Add(label_se_asian);
+            tabPage2.Controls.Add(unicode_se_asian);
+            tabPage2.Controls.Add(label_s_asian);
+            tabPage2.Controls.Add(unicode_s_asian);
 
             Button button3 = new Button();
             button3.Text = "📁"; // 🗁 📁 📂
@@ -160,8 +174,8 @@ namespace awesomescr
             tabPage3.Controls.Add(acrylic_folder);
             tabPage3.Controls.Add(button3);
 
-            this.Size = new Size(225, 350);
-            tabControl1.Size = new Size(200, 250);
+            this.Size = new Size(225, 375);
+            tabControl1.Size = new Size(200, 275);
 
             this.Controls.Add(tabControl1);
             tabControl1.Controls.Add(tabPage1);
@@ -230,6 +244,8 @@ namespace awesomescr
             key.SetValue("unicode_e_asian", unicode_e_asian.Checked, RegistryValueKind.DWord);
             key.SetValue("unicode_oceania", unicode_oceania.Checked, RegistryValueKind.DWord);
             key.SetValue("unicode_middle", unicode_middle.Checked, RegistryValueKind.DWord);
+            key.SetValue("unicode_se_asian", unicode_se_asian.Checked, RegistryValueKind.DWord);
+            key.SetValue("unicode_s_asian", unicode_s_asian.Checked, RegistryValueKind.DWord);
             key.SetValue("acrylic_enabled", acrylic_enabled.Checked, RegistryValueKind.DWord);
             key.SetValue("acrylic_alpha", acrylic_alpha.Value, RegistryValueKind.DWord);
             key.SetValue("acrylic_blur", acrylic_blur.Value, RegistryValueKind.DWord);
@@ -276,6 +292,10 @@ namespace awesomescr
                 if (keyvalue != null) unicode_oceania.Checked = Convert.ToBoolean(keyvalue);
                 keyvalue = key.GetValue("unicode_middle");
                 if (keyvalue != null) unicode_middle.Checked = Convert.ToBoolean(keyvalue);
+                keyvalue = key.GetValue("unicode_se_asian");
+                if (keyvalue != null) unicode_se_asian.Checked = Convert.ToBoolean(keyvalue);
+                keyvalue = key.GetValue("unicode_s_asian");
+                if (keyvalue != null) unicode_s_asian.Checked = Convert.ToBoolean(keyvalue);
                 keyvalue = key.GetValue("acrylic_enabled");
                 if (keyvalue != null) acrylic_enabled.Checked = Convert.ToBoolean(keyvalue);
                 keyvalue = key.GetValue("acrylic_alpha");
