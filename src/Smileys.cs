@@ -5,7 +5,7 @@ namespace awesomescr
 {
     class Smileys : Provider
     {
-        public static readonly string version = "Smileys v1.4";
+        public static readonly string version = "Smileys v1.5";
         private Dictionary<string, string> data;
         public Smileys(Dictionary<string, string> preset)
         {
@@ -70,30 +70,52 @@ namespace awesomescr
             {"-","mini : "},
         };
         public static readonly Dictionary<string, string> kaomoji = new Dictionary<string, string>() {
-            {"-_-","kaomoji : "},
-            {"( ͡° ͜ʖ ͡°)","kaomoji : Le Lenny"},
             {"( ¬‿¬)", "kaomoji : happy / He he he"},
             {"( ͠❛ ͜ʖ͠❛ )", "kaomoji : "},
+            {"( ͡° ͜ʖ ͡°)","kaomoji : Le Lenny"},
+            {"($_$)","kaomoji : greedy"},
+            {"(*_*)","kaomoji : in love"},
+            {"(-.-)Zzz...","kaomoji : sleeping"},
+            {"(-_-)","kaomoji : secret smile"},
+            {"(=_=)","kaomoji : sleepy"},
+            {"(>_<)","kaomoji : furious / hurt"},
             {"(@ @)","kaomoji : You're kidding!"},
+            {"(@_@)","kaomoji : stunned"},
+            {"(^_^)","kaomoji : smile"},
+            {"(^o^)","kaomoji : singing"},
+            {"(g_g)","kaomoji : sleepy"},
+            {"(o_o)","kaomoji : shocked"},
+            {"(u_u)","kaomoji : sleeping"},
+            {"(x_x)","kaomoji : dead"},
             {"(⌐■_■)", "kaomoji : sun glasses / cool"},
             {"(◔◡◔)", "kaomoji : "},
             {"(ㆆ_ㆆ)", "kaomoji : "},
-            {"^_^","kaomoji : "},
-            {"^^", "kaomoji : "},
-            {"¯\\_(ツ)_/¯","kaomoji : shrug"},
-            {"≧◉ᴥ◉≦","kaomoji : cat"},
-            {"◕‿◕", "kaomoji : "},
-            {"♪♫*•♪", "kaomoji : "},
-            {"o_O","kaomoji : "},
+            {"+_+","kaomoji : (?)"},
+            {"-,-","kaomoji : sleepy"},
+            {"-.-","kaomoji : sleepy"},
+            {"-_-","kaomoji : "},
+            {";;", "kaomoji : sadness"},
+            {";_;","kaomoji : crying"},
             {"T_T","kaomoji : crying / sadness"},
-            {"x_x","kaomoji : dead / stressed"},
+            {"\\ ^_^ /","kaomoji : joyful"},
+            {"^^", "kaomoji : happiness"},
+            {"^_^","kaomoji : basic smilie"},
+            {"o_O","kaomoji : "},
+            {"o_o","kaomoji : (?)"},
             {"x_X","kaomoji : dead / stressed"},
-            {"ʕ•́ᴥ•̀ʔ","kaomoji : bear"},
-            {"ʕ•́ᴥ•̀ʔっ", "kaomoji : pointing bear"},
+            {"x_x","kaomoji : dead / stressed"},
+            {"{{(>_<)}}","kaomoji : cold"},
+            {"~\\ (^o^) /~/~","kaomoji : octopus"},
+            {"~_~","kaomoji : (?)"},
+            {"¯\\_(ツ)_/¯","kaomoji : shrug"},
             {"ʕծ‸ ծʔ","kaomoji : sad bear"},
             {"ʕಠᴥಠʔ","kaomoji : angry bear"},
+            {"ʕ•́ᴥ•̀ʔ","kaomoji : bear"},
+            {"ʕ•́ᴥ•̀ʔっ", "kaomoji : pointing bear"},
             {"ಠ_ಠ","kaomoji : disapproval / disbelief"},
-            {"-", "kaomoji : "},
+            {"≧◉ᴥ◉≦","kaomoji : cat"},
+            {"◕‿◕", "kaomoji : "},
+            {"♪♫*•♪", "kaomoji : ♪♫•♪"},
         };
     }
 }
