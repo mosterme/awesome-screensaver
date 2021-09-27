@@ -5,7 +5,7 @@ namespace awesomescr
 {
     class Smileys : Provider
     {
-        public static readonly string version = "Smileys v1.6q";
+        public static readonly string version = "Smileys v1.6";
         private Dictionary<string, string> data;
         public Smileys(Dictionary<string, string> preset)
         {
@@ -47,8 +47,8 @@ namespace awesomescr
             {"+:-)","classic : priest"},
             {"+<:-)","classic : Peace be upon you, my children..."},
             {"+<||-)","classic : knight"},
-            {"-:-(","classic : Mr. T doesn't smile"},
-            {"-:-)","classic : Mr. T"},
+            // {"-:-(","classic : Mr. T doesn't smile"},
+            // {"-:-)","classic : Mr. T"},
             {"-=#:-)","classic : wizard"},
             {".-(","classic : should have worn safety glasses"},
             {"3:*>","classic : Rudolph the red-nosed reindeer"},
@@ -96,7 +96,6 @@ namespace awesomescr
             {"<+|:-)","classic : The Pope"},
             {"<:-(","classic : dunce"},
             {"<:-)","classic : dumb question"},
-            {"<°(((><x","classic : fish"},
             {"=):-)","classic : Uncle Sam"},
             {"=:-(","classic : real punks never smile"},
             {"=:-)","classic : punk rocker"},
@@ -123,7 +122,7 @@ namespace awesomescr
             {"]B-)","classic : Batman"},
             {"_:^)","classic : Native American"},
             {"d:-)","classic : baseball cap"},
-            {"oO:)&","classic : grandmother"},
+            {"oO:)&&","classic : grandmother"},
             {"q:-)","classic : baseball cap backwards"},
             {"r:-)","classic : wearing ponytail"},
             {"y:-)","classic : bad toupee"},
@@ -141,10 +140,18 @@ namespace awesomescr
             {":D","mini : grinning face"},
             {":O","mini : shocked face"},
             {":P","mini : tongue stuck out"},
-            {"</3","mini : broken heart"},
-            {"<3","mini : heart"},
             {"=(","mini : big frown"},
             {"=)","mini : big smile"},
+
+            {"pp#","animals : cow"},
+            {"pq'#'","animals : bull"},
+            {"<°(((><x","animals :  : fish"},
+            {">-^);>","animals : fish"},
+
+            {"@>+-+--","other : a rose"},
+            {"@}->--","other : a rose"},
+            {"</3","other : broken heart"},
+            {"<3","other : heart"},
         };
         public static readonly Dictionary<string, string> kaomoji = new Dictionary<string, string>() {
             {"( ¬‿¬)", "kaomoji : happy / He he he"},
@@ -173,6 +180,10 @@ namespace awesomescr
             {"-_-","kaomoji : "},
             {";;", "kaomoji : sadness"},
             {";_;","kaomoji : crying"},
+            {"<^O^>","kaomoji : laughing loudly"},
+            {"=^-^=","kaomoji : cat smile"},
+            {"@_@","kaomoji : boggled eyes or glasses"},
+            {"O_O","kaomoji : shocked"},
             {"T_T","kaomoji : crying / sadness"},
             {"\\ ^_^ /","kaomoji : joyful"},
             {"^^", "kaomoji : happiness"},
