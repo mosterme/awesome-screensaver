@@ -133,8 +133,6 @@ namespace awesomescr
             {"|-P","classic : yuk"},
             {"}:-(","classic : Toupee in an updraft"},
 
-
-
             {":@","mini : what?"},
             {":)","mini : smiling face"},
             {";)","mini : winking face"},
