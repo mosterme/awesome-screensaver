@@ -221,7 +221,7 @@ namespace awesomescr
             {"x_x","kaomoji : dead / stressed"},
             {"x_X","kaomoji : dead / stressed"},
             {"ʕ •ᴥ•ʔ","kaomoji : koala"},
-            {"ʕ•͡ᴥ•ʔ","kaomoji : pola bear"},
+            {"ʕ•͡ᴥ•ʔ","kaomoji : polar bear"},
             {"ʕ•́ᴥ•̀ʔ","kaomoji : bear"},
             {"ʕ•́ᴥ•̀ʔっ","kaomoji : pointing bear"},
             {"ʕծ‸ ծʔ","kaomoji : sad bear"},
