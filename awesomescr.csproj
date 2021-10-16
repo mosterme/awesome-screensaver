@@ -5,6 +5,7 @@
     <OutputType>WinExe</OutputType>
     <Product>Awesome Screensaver</Product>
     <TargetFramework>net5.0-windows</TargetFramework>
+    <TargetName>awesomescr</TargetName>
     <UseWindowsForms>true</UseWindowsForms>
     <Version>0.0.0.1</Version>
   </PropertyGroup>
